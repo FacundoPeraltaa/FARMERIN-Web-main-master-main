@@ -1,0 +1,1405 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+$sidebar-bg-color: #1d1d1d;
+$submenu-bg-color: rgba(255, 255, 255, 0.05);
+$submenu-bg-color-collapsed: rgba(29, 29, 29, 0.95);
+$sidebar-color: #adadad;
+$highlight-color: #d8d8d8;
+$icon-bg-color: rgba(255, 255, 255, 0.05);
+$icon-size: 35px;
+@import '~react-pro-sidebar/dist/scss/styles.scss';
+
+
+#__next {
+  height: 100%;
+}
+
+.app {
+  height: 100%;
+  display: flex;
+  position: relative;
+
+  .btn-toggle {
+    cursor: pointer;
+    width: 4rem;
+    height: auto;
+    color: gray;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    display: none;
+    background-image:url('../public/logoF.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-blend-mode:lighten;
+    background-size:auto 100%;
+  
+  }
+
+  .sidebar-btn-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .sidebar-btn {
+      padding: 1px 15px;
+      border-radius: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #adadad;
+      text-decoration: none;
+      margin: 0 auto;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      span {
+        margin-left: 5px;
+        font-size: 13px;
+      }
+      &:hover {
+        color: $highlight-color;
+      }
+    }
+  }
+
+  .sidebar-logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .sidebar-logo {
+      padding: 5px 5px;
+      border-radius: 40px;
+     
+      color: #adadad;
+      text-decoration: none;
+      margin: 0 auto;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      span {
+        margin-left: 5px;
+        font-size: 25px;
+      }
+      &:hover {
+        color: $highlight-color;
+      }
+    }
+  }
+@media (max-width:768px) {
+  .responsive {
+    display: none;
+  }
+}
+  .collapsed {
+    .sidebar-btn {
+      display: inline-block;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      line-height: 40px;
+      padding:0;
+  
+    }
+    .sidebar-logo {
+      display: inline-block;
+      border-radius: 50%;
+      width: 55px;
+      height: 55px;
+      line-height: 60px;
+      padding:0;
+    }
+  }
+
+  main {
+   
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background-color:whitesmoke;
+
+    header {
+      color: white;
+      margin:0rem;
+      align-items: center;
+      display:flex;
+      justify-content:space-between;
+      height: 5rem;
+      width: 100%;
+      position:fixed;
+      top:0;
+      z-index: 1;
+      background-color:#212f49;    //#5b5d5f 
+      border: 0;
+      box-shadow: 0 2px 2px 0 rgba(60,75,100,.14), 0 3px 1px -2px rgba(60,75,100,.12), 0 1px 5px 0 rgba(60,75,100,.2);
+     
+    }
+
+    content{     
+      padding-top: 6rem;
+    }
+
+    footer {
+      margin-top: auto;
+      color: #888;
+      text-align: center;
+      a {
+        text-decoration: none;
+        color: #888;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    
+  }
+
+  .social-bagdes {
+    margin-top: 10px;
+    img {
+      margin: 5px;
+    }
+  }
+
+  .block { 
+    padding: 1rem;
+    font-size: 14px;
+    color: #545454;
+    > span {
+      margin-left: 10px;
+    }
+  }
+
+  .enca-ani{
+    display: flex;
+    margin-right: 300px;
+    padding: 2;
+  }
+  
+  .hdos-ani{
+    display: flex;
+    background-color: #F18700;
+    text-align: center;
+    font-family: "helvetica";
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    line-height: 2;
+    padding-left: 2px;
+    padding-right: 2px;
+    border-radius: 10px;
+
+  }
+
+  .elem-header{
+    align-items: center;
+    display: flex;
+    padding: 0.5rem ;
+    }
+
+  .elem-header-der{
+      align-items: center;
+      display:flex;
+      justify-content:space-between;
+    }
+
+
+  .elem-porc-reduccion{
+    display: flex;
+    margin-right: 300px;
+    padding: 2;
+  }
+
+  .elem-porc-aumento{
+    display: flex;
+    margin-right: 300px;
+    padding: 2;
+  }
+
+  .elem-aumen-letras{
+    display: flex;
+    background-color: #F18700;
+    text-align: center;
+    font-family: "helvetica";
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    line-height: 2;
+    padding-left: 2px;
+    padding-right: 2px;
+    border-radius: 10px;
+  }
+
+  .elem-reduc-letras{
+    display: flex;
+    background-color: #F18700;
+    text-align: center;
+    font-family: "helvetica";
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    line-height: 2;
+    padding-left: 2px;
+    padding-right: 2px;
+    border-radius: 10px;
+
+  }
+
+
+
+// CUANDO LA PESTAÑA SEA MENOR A 768 PX CAMBIA DE LA SIGUIENTE MANERA
+@media (max-width: 767.98px) {
+    overflow-x: hidden;
+    header {
+      h1 {
+        font-size: 24px;
+      }
+    }
+  }
+
+
+  @media (max-width: 768px) {
+    .btn-toggle {
+      margin: 1rem;
+      display: flex;
+    }
+    .block{
+      display: none;
+    }
+ 
+  }
+}
+.hambur {
+  display: flex;
+  margin-right: 2%;
+}
+@media (min-width: 768px) {
+  .hambur {
+    display: none
+  }}
+
+.badge {
+  padding: 3px 6px;
+  font-size: 9px;
+  letter-spacing: 1px;
+  border-radius: 15px;
+  &.red {
+    color: #ffffff;
+    background: #d63030;
+  }
+  &.gray {
+    color: #ffffff;
+    background: #777777;
+  }
+  &.yellow {
+    color: #000000;
+    background: #ffd331;
+  }
+ 
+}
+
+// CUANDO LA PESTAÑA SEA MENOR A 1434 PX CAMBIA DE LA SIGUIENTE MANERA
+@media (max-width: 1434px) {
+  .elem-porc-aumento{
+    width: 45em;
+    display: flex;
+    margin: 4%;
+    
+  }
+
+  .elem-aumen-letras{
+    width: 22em;
+    display: flex;
+    font-size: 25px;
+    text-align: center;
+  }
+
+  .elem-porc-reduccion {
+    width: 27em;
+    display: flex;
+    margin: 28%;
+  }
+
+  .elem-reduc-letras {
+    width: 50em;
+    display: flex;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .elem-header-der {
+    display: flex;
+    width: 20em;
+    height: 6px;
+  }
+
+}
+
+// CUANDO LA PESTAÑA SEA MENOR A 1234 PX CAMBIA DE LA SIGUIENTE MANERA
+@media (max-width: 1234px) {
+  .elem-porc-aumento{
+    width: 25em;
+    display: flex;
+    margin: 3%;
+    
+  }
+
+  .elem-aumen-letras{
+    width: 30em;
+    display: flex;
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .elem-porc-reduccion {
+    width: 24em;
+    display: flex;
+    margin: 30%;
+  }
+
+  .elem-reduc-letras {
+    width: 28em;
+    display: flex;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .elem-header-der {
+    display: flex;
+    width: 18em;
+    height: 6px;
+  }
+
+}
+
+// CUANDO LA PESTAÑA SEA MENOR A 990 PX CAMBIA DE LA SIGUIENTE MANERA
+@media (max-width: 990px) {
+  .elem-porc-aumento{
+    width: 14em;
+    display: flex;
+    margin: 2%;
+    
+  }
+
+  .elem-aumen-letras{
+    width: 40em;
+    display: flex;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .elem-porc-reduccion {
+    width: 27em;
+    display: flex;
+    margin: 28%;
+  }
+
+  .elem-reduc-letras {
+    width: 40em;
+    display: flex;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .elem-header-der {
+    display: flex;
+    width: 20em;
+    height: 6px;
+  }
+
+}
+
+// CUANDO LA PESTAÑA SEA MENOR A 900 PX CAMBIA DE LA SIGUIENTE MANERA
+@media (max-width: 900px) {
+  .elem-porc-aumento{
+    width: 13em;
+    display: flex;
+    margin: 5%;
+    
+  }
+
+  .elem-aumen-letras{
+    width: 19em;
+    display: flex;
+    font-size: 11px;
+    text-align: center;
+  }
+
+  .elem-porc-reduccion {
+    width: 19em;
+    display: flex;
+    margin: 9%;
+  }
+
+  .elem-reduc-letras {
+    width: 19em;
+    display: flex;
+    font-size: 11px;
+    text-align: center;
+  }
+
+  .elem-header-der {
+    display: flex;
+    width: 20em;
+    height: 6px;
+  }
+
+}
+
+// CUANDO LA PESTAÑA SEA MENOR A 888 PX CAMBIA DE LA SIGUIENTE MANERA
+@media (max-width: 888px) {
+  .elem-porc-aumento{
+    width: 13em;
+    display: flex;
+    margin: 5%;
+    
+  }
+
+  .elem-aumen-letras{
+    width: 19em;
+    display: flex;
+    font-size: 11px;
+    text-align: center;
+  }
+
+  .elem-porc-reduccion {
+    width: 19em;
+    display: flex;
+    margin: 9%;
+  }
+
+  .elem-reduc-letras {
+    width: 19em;
+    display: flex;
+    font-size: 11px;
+    text-align: center;
+  }
+
+  .elem-header-der {
+    display: flex;
+    width: 20em;
+    height: 6px;
+  }
+
+}
+
+
+
+// CUANDO LA PESTAÑA SEA MENOR A 700 PX CAMBIA DE LA SIGUIENTE MANERA
+@media (max-width: 700px) {
+  .elem-porc-aumento{
+    width: 27em;
+    display: flex;
+    margin: 10%;
+  }
+
+  .elem-aumen-letras{
+    width: 45em;
+    display: flex;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .elem-porc-reduccion {
+    width: 27em;
+    display: flex;
+    margin: 10%;
+  }
+
+  .elem-reduc-letras {
+    width: 45em;
+    display: flex;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .elem-header-der {
+    display: flex;
+    width: 20em;
+    height: 6px;
+  }
+
+}
+
+// CUANDO LA PESTAÑA SEA MENOR A 500 PX CAMBIA DE LA SIGUIENTE MANERA
+@media (max-width: 500px) {
+  .elem-porc-aumento{
+    align-items: center;
+    width: 70em;
+    height: 4em;
+    display: flex;
+    margin: 3%;
+  }
+
+  .elem-aumen-letras{
+    width: 17em;
+    height: 4em;
+    display: flex;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .elem-porc-reduccion {
+    align-items: center;
+    width: 50em;
+    height: 10em;
+    display: flex;
+    margin: 3%;
+  }
+
+  .elem-reduc-letras {
+    width: 17em;
+    height: 4em;
+    display: flex;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .elem-header-der {
+    display: flex;
+    width: 20em;
+    height: 6px;
+  }
+
+}
+// MONITOR
+.containerMonitor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loaderMonitor{
+  background-image: url('/logoF.png');
+  background-size: contain; /* Ajusta el tamaño de la imagen para que quepa */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-position: center;
+  width: 100px; /* Ajusta el tamaño según sea necesario */
+  height: 100px; /* Ajusta el tamaño según sea necesario */
+  border: 3px solid #f3f3f3; /* Crea un borde para el loader */
+  border-top: 3px solid #3498db; /* Borde superior azul */
+  border-radius: 50%; /* Forma de círculo */
+  animation: spin 2s linear infinite; /* Animación del loader */
+}
+
+.innerContentMonitor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.imagenLogoMonitor {
+  width: 50px; /* Ajusta el tamaño de la imagen según sea necesario */
+  height: 50px; /* Ajusta el tamaño de la imagen según sea necesario */
+  /* Otros estilos de la imagen si es necesario */
+}
+
+.textoLoaderMonitor {
+  text-align: center;
+  font-size: 2.0em; /* Tamaño del texto */
+  margin-top: 30px; /* Espacio entre el loader y el texto */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Grafico.css */
+.containerGrafico {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.TextoFoto 
+{
+  background-color: #1b8aa5; /* Color de fondo amarillo */
+  color: #c4cd07; /* Color de texto oscuro */
+  padding: 5px 9px; /* Espacio dentro del elemento */
+  border: 1px solid #e0a800; /* Borde del elemento */
+  border-radius: 5px; /* Bordes redondeados */
+  font-size: 25PX; /* Tamaña de las letras */
+}
+.chartContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chartContainer img {
+  height: 150px;
+  width: 150px;
+}
+
+.loaderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loaderGrafico {
+  background-image: url('/logoF.png');
+  background-size: contain; /* Ajusta el tamaño de la imagen para que quepa */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-position: center;
+  width: 100px; /* Ajusta el tamaño según sea necesario */
+  height: 100px; /* Ajusta el tamaño según sea necesario */
+  border: 3px solid #f3f3f3; /* Crea un borde para el loader */
+  border-top: 3px solid #3498db; /* Borde superior azul */
+  border-radius: 50%; /* Forma de círculo */
+  animation: spin 2s linear infinite; /* Animación del loader */
+}
+
+.innerContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.imagenLogo {
+  width: 50px; /* Ajusta el tamaño de la imagen según sea necesario */
+  height: 50px; /* Ajusta el tamaño de la imagen según sea necesario */
+  /* Otros estilos de la imagen si es necesario */
+}
+
+.textoLoader {
+  text-align: center;
+  font-size: 2.0em; /* Tamaño del texto */
+  margin-top: 30px; /* Espacio entre el loader y el texto */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+.listContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.AnimalesFormulario {
+  max-height: 600px;
+  overflow-y: auto;
+  width: 60%;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  margin-left: 20px;
+}
+.AnimalesFormulario h2 {
+  font-size: 23px;
+}
+
+.tablaDeAnimales {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tablaDeAnimales th, .tablaDeAnimales td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.tablaDeAnimales th {
+  background-color: #f2f2f2;
+}
+
+.mensajeVacio {
+  font-size: 15px;
+  color: #666;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+  margin-left: 20px;
+  //margin-top: 350px;
+}
+
+// ESTILOS DE AYUDA 
+
+
+.contact-page {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+contact-section, .social-section {
+  width: 45%;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px #020014;
+}
+
+.contact-section, .map-section {
+  width: 95%;
+  background-color: #ffffff;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px #020014;
+}
+// TITULOS CONTACTO - REDES 
+.titulo-ayuda {
+  font-family: 'Roboto', sans-serif; /* Fuente moderna */
+  font-size: 2.5rem; /* Tamaño del texto */
+  font-weight: 700; /* Grosor del texto */
+  line-height: 1.2; /* Espaciado entre líneas */
+  letter-spacing: -0.5px; /* Espaciado entre letras */
+  margin: 0.5em 0; /* Márgenes superior e inferior */
+  padding: 0.2em 0.5em; /* Relleno adicional para el fondo */
+  color: #1b89a5; /* Color del texto: Gris oscuro */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  border-bottom: 2px solid #1b89a5; /* Línea inferior */
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  .titulo-ayuda {
+      font-size: 2rem; /* Tamaño del texto para dispositivos medianos */
+  }
+}
+
+@media (max-width: 480px) {
+  .titulo-ayuda {
+      font-size: 1.5rem; /* Tamaño del texto para dispositivos pequeños */
+  }
+}
+/*
+// AVISO DE RACIONES
+.divRaciones {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
+}
+// AVISO GRAFICO 
+.tituloRacionesAviso {
+  margin: 0;
+  color: #721c24;
+  font-family: 'Arial', sans-serif;
+}
+
+.tituloRacionesAviso:first-child {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.tituloRacionesAviso:nth-child(2) {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.divAnimalesList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
+  text-align: center;
+}
+// AVISO LISTAS 
+.tituloAnimalesList {
+  margin: 0;
+  color: #721c24;
+  font-family: 'Arial', sans-serif;
+  font-size: 12px;
+}
+*/
+// TITULOS UBICACION 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+.titulo-ayuda-ubi {
+    font-family: 'Roboto', sans-serif; /* Fuente moderna y legible */
+    font-size: 2.5rem; /* Tamaño del texto ajustable */
+    font-weight: 700; /* Grosor del texto */
+    line-height: 1.2; /* Espaciado entre líneas */
+    letter-spacing: -0.5px; /* Espaciado entre letras */
+    margin: 0.5em 0; /* Márgenes superior e inferior */
+    padding: 0; /* Sin relleno adicional */
+}
+
+/* Colores */
+.titulo-ayuda-ubi {
+    color: #1b89a5; /* Color del texto: Gris oscuro */
+    padding: 0.2em 0.5em; /* Relleno para el fondo */
+}
+
+/* Sombra de texto */
+.titulo-ayuda-ubi {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Bordes */
+.titulo-ayuda-ubi {
+    border-bottom: 2px solid #1b89a5; /* Línea en la parte inferior */
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .titulo-ayuda-ubi {
+        font-size: 2rem; /* Tamaño del texto para dispositivos medianos */
+    }
+}
+
+@media (max-width: 480px) {
+    .titulo-ayuda-ubi {
+        font-size: 1.5rem; /* Tamaño del texto para dispositivos pequeños */
+    }
+}
+.contact-item {
+  margin-bottom: 15px;
+}
+
+.contact-item a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: #020014; /* Color del texto */
+  font-size: 20px; /* Tamaño del texto */
+  font-weight: 500; /* Peso del texto */
+}
+
+.contact-item a i, .contact-item a svg {
+  margin-right: 15px; /* Espacio entre el icono y el texto */
+  font-size: 28px; /* Tamaño del icono */
+  color: #1a8aa4; /* Color del icono */
+}
+
+.contact-item a:hover {
+  color: #1a8aa4; /* Color del texto al pasar el mouse */
+  text-decoration: underline; /* Subraya al pasar el mouse */
+}
+
+/* Estilos generales para los alertas */
+.alert {
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+
+  h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .d-flex {
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* Estilo para el botón dentro del alerta */
+.alert .btn {
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Estilo para el cartel de aumento */
+.alert-success {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+
+  .btn-outline-success {
+    color: #155724;
+    border: 1px solid #155724;
+
+    &:hover {
+      background-color: #155724;
+      color: #fff;
+    }
+  }
+}
+
+/* Estilo para el cartel de reducción */
+.alert-warning {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  color: #856404;
+
+  .btn-outline-warning {
+    color: #856404;
+    border: 1px solid #856404;
+
+    &:hover {
+      background-color: #856404;
+      color: #fff;
+    }
+  }
+}
+
+/* Estilo específico para el contenedor del cartel de aumento */
+.elem-porc-aumento {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+  padding: 15px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  .elem-aumen-letras {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+  }
+}
+
+/* Estilo específico para el contenedor del cartel de reducción */
+.elem-porc-reduccion {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  color: #856404;
+  padding: 15px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  .elem-reduc-letras {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+  }
+}
+/*
+// LAYAUT DE NOREGS
+.listaNoRegs {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+.tituloNoRegs {
+  margin-left: 20px; 
+  font-size: 25px;
+  font-family: 'Times New Roman';
+}
+
+.excelNoRegs {
+  margin-right: 15px;
+  padding: 5px 50px;
+  font-size: 16px;
+  background-color: #28a745;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.divNoReg {
+  background-color: #f8d7da; 
+  color: #721c24; 
+  border: 1px solid #f5c6cb; 
+  padding: 20px; 
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  max-width: 600px; 
+  margin: 20px auto; 
+  text-align: center; 
+}
+// AVISO DE NO REGS 
+.divNoReg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.tituloNodispoError {
+  margin: 0;
+  color: #721c24;
+  font-family: 'Arial', sans-serif;
+}
+
+.tituloNodispoError:first-child {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.tituloNodispoError:nth-child(2) {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+// EXEL RACIONES
+.tamboChart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.chartHeader {
+  display: flex;
+  justify-content: space-between; 
+  width: 100%; 
+  margin-bottom: 10px; 
+}
+
+.tituloNoRegs {
+  margin: 0; 
+}
+
+.excelRaciones {
+  background-color: #28a745; 
+  color: white;
+  margin-left: 150px;
+  border-radius: 10px;
+  padding: 5px 10px;
+  cursor: pointer; 
+}
+
+.excelRaciones:hover {
+  background-color: #208938; 
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
+
+.alert-warning {
+  text-align: center;
+}
+
+button.btn-info {
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+
+button.btn-info:hover {
+  background-color: #138496;
+  border-color: #117a8b;
+}
+*/
+///////////////////////////////// FICHA HISTORIAL ///////////////////////////////////////
+.custom-table {
+  margin-top: 20px;
+}
+
+.custom-table th, .custom-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.custom-table thead th {
+  background-color: #0985a1;
+  color: #fff;
+  font-weight: bold;
+}
+
+.custom-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+//////////////////////////////////////////// BOTONES PARAMETROS ////////////////////////////////////////7
+.dropdown-reducir-button {
+  .btn {
+  background-color: red;
+  border-color: red;
+  font-size: 1.25rem;         // Tamaño de fuente más grande
+  padding: 0.75rem 1.5rem;    // Aumenta el padding para hacer el botón más grande
+  line-height: 1.5;           // Ajusta la altura de la línea para el texto
+
+  &:hover {
+    background-color: darkred; // Rojo más oscuro
+    border-color: darkred;     // Rojo más oscuro
+  }
+}
+}
+
+.dropdown-menu {
+  background-color: whitesmoke;
+  border-color: whitesmoke;
+  border-color: #000000;
+
+
+  .dropdown-item {
+    font-size: 1.25rem;       // Tamaño de fuente más grande para los items
+    padding: 0.75rem 1.5rem;  // Aumenta el padding para los items
+  }
+
+  .dropdown-item:hover {
+    background-color: white; // Rojo más oscuro para los items del dropdown
+    color: white;             // Opcional: cambia el color del texto para mejorar el contraste
+  }
+}
+
+
+.dropdown-aumentar-button{
+  .btn {
+  background-color: green;
+  border-color: green;
+  font-size: 1.25rem;         // Tamaño de fuente más grande
+  padding: 0.75rem 1.5rem;    // Aumenta el padding para hacer el botón más grande
+  line-height: 1.5;           // Ajusta la altura de la línea para el texto
+
+  &:hover {
+    background-color: darkgreen; // Rojo más oscuro
+    border-color: darkgreen;     // Rojo más oscuro
+  }
+}
+
+.dropdown-menu {
+  background-color: whitesmoke;
+  border-color: whitesmoke;
+  border-color: #000000;
+
+  .dropdown-item {
+    font-size: 1.25rem;       // Tamaño de fuente más grande para los items
+    padding: 0.75rem 1.5rem;  // Aumenta el padding para los items
+  }
+
+  .dropdown-item:hover {
+    background-color: white; // Rojo más oscuro para los items del dropdown
+    color: white;              // Opcional: cambia el color del texto para mejorar el contraste
+  }
+}
+}
+.botonAplicar {
+  font-weight: bold;
+  border-radius: 10px;
+  width: 30%;
+  margin: 0 auto;
+  height: 30px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-top: 10px; // Ajusta el margen superior según necesites
+}
+
+.botonRestablecer{
+  padding: 0.75rem 1.5rem; 
+  font-weight: bold;
+  border-radius: 10px;
+  width: 40%;
+  height: 45px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.boton-historial {
+  background-color: #1b8aa5;
+  color: white; // Asegúrate de que el texto sea legible
+  border: none; // Opcional: quitar el borde si no se ajusta al diseño
+  &:hover {
+      background-color: darken(#1b8aa5, 10%); // Oscurecer el color al pasar el ratón por encima
+  }
+}
+
+.historial-container {
+  max-height: 400px; // Limita la altura máxima del contenedor y permite desplazamiento si es necesario
+  overflow-y: auto; // Agrega desplazamiento vertical
+  padding: 15px;
+
+  .historial-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #e0e0e0; // Línea de separación entre elementos
+      background-color: #f9f9f9; // Fondo de los elementos del historial
+      margin-bottom: 10px;
+      border-radius: 5px; // Bordes redondeados
+
+      &:last-child {
+          border-bottom: none; // Sin borde inferior en el último elemento
+      }
+
+      .historial-fecha {
+          font-weight: bold;
+          color: #333; // Color de la fecha
+      }
+
+      .historial-mensaje {
+          color: #666; // Color del mensaje
+      }
+  }
+}
+
+//////////////////////////////////////////// inicio CONTROL DE INGRESO (aprtado nuevo) /////////////////////////////////////////////////
+
+.containerGrafico {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  align-items: center;
+}
+ ///////////////////////// inicio TITULO Y EXCEL  /////////////////////
+.tamboHeader {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  //margin-bottom: 20px;
+
+}
+
+.btn_btn-primary{
+  background-color: #28a745;
+  /* Color de fondo del botón */
+  color: white;
+  margin-left: 150px;
+  border-radius: 10px;
+  padding: 5px 10px;
+  /* Espaciado interno del botón */
+  cursor: pointer;
+  /* Cambia el cursor al pasar sobre el botón */
+}
+///////////////////////// fin TITULO Y EXCEL  ///////////////////////// 
+///
+///////////////////////// inicio GRAFICO DE BARRAS ////////////////////
+.chartArea {
+  height: 400px;
+  width: 100%;
+  max-width: 800px;
+}
+///////////////////////// fin GRAFICO DE BARRAS //////////////////////
+///
+/////////////////////// inicio BOTONES Y LISTA DE ANIMALES /////////// 
+.tamboChart {
+  height: auto;
+  width: 100%;
+}
+
+.chartButtons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 14px;
+}
+
+.chartButton {
+  padding: 10px 15px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.listContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.AnimalesFormulario {
+  max-height: 450px; // altura de la tabla
+  width: 35%; // ancho de la tabla
+  overflow-y: auto; // barra de desplazamiento
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 6px; // bordes de la tabla
+}
+
+.AnimalesFormulario h2 {
+  font-size: 22px; // tamaño de la fuente
+  text-align: center; // centrar el texto 
+}
+
+.tablaDeAnimales {
+  width: 100%;
+  border-collapse: collapse; // unir las celdas 
+}
+
+.tablaDeAnimales th {
+  background-color: #f2f2f2;
+  text-align: center;
+}
+
+.tablaDeAnimales td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+.loaderSecosNaN{
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+/////////////////////// fin BOTONES Y LISTA DE ANIMALES /////////// 
+///
+///////////////////////// inicio AVISO  /////////////////////////
+.errorContainer {
+  max-width: 300px;
+  margin: auto;
+  flex-direction: column;
+  font-size: 20px;
+  text-align: center;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 15px;
+  color: #e43434df;
+}
+
+.tituloRacionesAviso {
+  font-family: 'Arial', sans-serif;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.tituloRacionesAviso:first-child {
+  color:#000000;
+  font-size: 25px;
+
+}
+
+.tituloRacionesAviso:nth-child(2) {
+  color:#000000;
+  font-size: 25px;
+}
+///////////////////////// fin AVISO  /////////////////////////
+
+//////////////////////////////////////////// fin CONTROL DE INGRESO  /////////////////////////////////////////////////
