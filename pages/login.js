@@ -30,12 +30,23 @@ const Login = () => {
   const [showPass, setShowPass] = useState(false);
   const [show, setShow] = useState(false);
   const [showPoliticas, setShowPoliticas] = useState(false);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [emailToReset, setEmailToReset] = useState("");
+  const [alert, setAlert] = useState({ show: false, title: '', message: '', color: '#DD6B55' });
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const handleClosePoliticas = () => setShowPoliticas(false);
   const handleShowPoliticas = () => setShowPoliticas(true);
+
+  const handleCloseForgotPassword = () => setShowForgotPassword(false);
+  const handleShowForgotPassword = () => setShowForgotPassword(true);
+
+  const handleChangeEmail = (e) => {
+    setEmailToReset(e);
+  };
 
   async function iniciarSesion() {
     guardarProcesando(true);
@@ -50,6 +61,30 @@ const Login = () => {
 
 
   }
+
+  const forgotPassword = async () => {
+    guardarProcesando(true);
+    console.log("Email a restablecer:", emailToReset);
+    try {
+      await firebase.auth.sendPasswordResetEmail(emailToReset);
+      setAlert({
+        show: true,
+        title: '¡ATENCIÓN!',
+        message: "TE HEMOS ENVIADO UN MAIL PARA RESTABLECER TU CONTRASEÑA, SI NO LO HAS RECIBIDO REVISA EN SPAM",
+        color: '#399dad'
+      });
+    } catch (error) {
+      console.error('Error al enviar el correo:', error);
+      setAlert({
+        show: true,
+        title: '¡ATENCIÓN!',
+        message: "EL CORREO INGRESADO NO SE ENCUENTRA REGISTRADO EN FARMERIN",
+        color: 'red'
+      });
+    } finally {
+      guardarProcesando(false);
+    }
+  };
 
   return (
     <LayoutLogin>
@@ -123,7 +158,12 @@ const Login = () => {
                       </Button>
                     </Form.Group>
                     <Form.Group>
-                      <p>¿Olvidaste tu contraseña?</p>
+                      <Button
+                        variant="link"
+                        onClick={handleShowForgotPassword}
+                      >
+                        <h6>¿Olvidaste tu contraseña?</h6>
+                      </Button>
                     </Form.Group>
                   </Form>
                   <hr />
@@ -187,6 +227,48 @@ const Login = () => {
             <p>Farmerin se reserva el derecho de cambiar los términos de la presente Política de Privacidad en cualquier momento.</p>
           </ContenedorPoliticas>
         </Modal.Body>
+      </Modal>
+
+      <Modal show={showForgotPassword} onHide={handleCloseForgotPassword}>
+        <Modal.Header closeButton>
+          <Modal.Title>Recuperar Contraseña</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group>
+              <Form.Label>Ingresa tu correo electrónico</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Correo Electrónico"
+                value={emailToReset}
+                onChange={(e) => handleChangeEmail(e.target.value)}
+                required
+                style={{ borderRadius: '8px', borderColor: '#B0BDB5' }}
+              />
+            </Form.Group>
+            <Button variant="info" onClick={forgotPassword} style={{ width: '100%', borderRadius: '8px' }}>
+              Enviar Mail de Recuperación
+            </Button>
+            {alert.show && (
+              setShowAlert(true),
+              setAlert({ ...alert, show: false })
+            )}
+          </Form>
+        </Modal.Body>
+      </Modal>
+
+      <Modal show={showAlert} onHide={() => setShowAlert(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>{alert.title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>{alert.message}</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowAlert(false)}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
       </Modal>
     </LayoutLogin >
   );

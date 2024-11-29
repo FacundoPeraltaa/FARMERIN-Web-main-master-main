@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaPhone, FaWhatsapp, FaEnvelope, FaYoutube, FaInstagram, FaFacebook } from 'react-icons/fa';
+import { FaPhone, FaWhatsapp, FaEnvelope, FaYoutube, FaInstagram, FaFacebook, FaGlobe } from 'react-icons/fa';
 import Layout from '../components/layout/layout';
 
 const Ayuda = () => {
@@ -45,6 +45,12 @@ const Ayuda = () => {
             <a href="https://www.facebook.com/farmerinarg" target="_blank" rel="noopener noreferrer">
               <FaFacebook />
               <span>Facebook</span>
+            </a>
+          </div>
+          <div className="contact-item">
+            <a href="https://www.farmerin.com.ar/" target="_blank" rel="noopener noreferrer">
+              <FaGlobe />
+              <span>Nuestro Sitio Web</span>
             </a>
           </div>
         </div>

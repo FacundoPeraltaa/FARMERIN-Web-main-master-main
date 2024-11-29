@@ -10,8 +10,8 @@ import {
   SidebarFooter,
   SidebarContent,
 } from 'react-pro-sidebar';
-import { FaTachometerAlt, FaIndustry, FaChartLine, FaCog, FaTools, FaHandsHelping } from 'react-icons/fa';
-import { GiCow } from 'react-icons/gi';
+import { FaTachometerAlt, FaChartLine, FaCog, FaTools, FaHandsHelping } from 'react-icons/fa';
+import { GiCow, GiFactory,GiHelp } from 'react-icons/gi';
 import { FirebaseContext } from '../../firebase2';
 const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
 
@@ -26,7 +26,7 @@ const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
 
     <ProSidebar
       //image={`/menu${num}.png`}
-      image={`/menu3.png`}
+      image={`/fondo4.jpg`}
       collapsed={collapsed}
       toggled={toggled}
       breakPoint="md"
@@ -56,7 +56,7 @@ const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
       <SidebarContent>
         <Menu iconShape="circle">
           <Link href="/">
-            <MenuItem icon={<FaIndustry />}>
+            <MenuItem icon={<GiFactory />}>
               Tambos</MenuItem>
           </Link>
           <Link href="/animales">
