@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { AiOutlineBars } from 'react-icons/ai';
+import { AiOutlineBars, } from 'react-icons/ai';
 import { IoIosNotificationsOutline } from 'react-icons/io';
-import { FiLogOut } from "react-icons/fi";
 import { Button } from 'react-bootstrap';
 import Switch from 'react-switch';
 import { FirebaseContext } from '../../firebase2';
@@ -10,6 +9,7 @@ import { Badge, Modal, Alert } from 'react-bootstrap';
 import { ContenedorAlertas } from '../ui/Elementos';
 import { useDispatch, useSelector } from "react-redux";
 import { updateValor } from '../../redux/valorSlice';
+
 
 const Navegacion = ({ collapsed, toggled, handleToggleSidebar, handleCollapsedChange, titulo }) => {
     const { usuario, firebase, guardarTamboSel, tambos, tamboSel, porc } = useContext(FirebaseContext);
@@ -22,6 +22,7 @@ const Navegacion = ({ collapsed, toggled, handleToggleSidebar, handleCollapsedCh
     const [error, guardarError] = useState(false);
     const [ultimoCambio, setUltimoCambio] = useState(null); // Estado para el último cambio
     let variante = "warning";
+    const [showPerfil, setShowPerfil] = useState(false); // Estado para el modal de perfil
 
     const dispatch = useDispatch();
     const valor = useSelector((state) => state.valor);
@@ -37,7 +38,6 @@ const Navegacion = ({ collapsed, toggled, handleToggleSidebar, handleCollapsedCh
             dispatch(updateValor(tamboSel.porcentaje));
         }
     }, [tamboSel, dispatch]);
-
 
     useEffect(() => {
         tambos && obtenerAlertas();
@@ -76,6 +76,11 @@ const Navegacion = ({ collapsed, toggled, handleToggleSidebar, handleCollapsedCh
     const handleHistorialClose = () => setShowHistorial(false);
     const handleHistorialShow = () => {
         setShowHistorial(true);
+    };
+
+    const handlePerfilClose = () => setShowPerfil(false);
+    const handlePerfilShow = () => {
+        setShowPerfil(true);
     };
 
     function cerrarSesion() {
@@ -148,13 +153,6 @@ const Navegacion = ({ collapsed, toggled, handleToggleSidebar, handleCollapsedCh
         }
     }
 
-    // Asegúrate de actualizar el estado de último cambio después de realizar un nuevo cambio
-    const handleCambio = async (nuevoValor) => {
-        // Suponiendo que tienes una función para guardar el cambio en la base de datos
-        await actualizarRacion(nuevoValor);
-        await obtenerUltimoCambio(); // Actualizar el último cambio después de guardar
-    };
-
     function formatFecha(fecha) {
         if (fecha instanceof Date) {
             return fecha.toLocaleDateString(); // Solo fecha sin hora
@@ -193,33 +191,24 @@ const Navegacion = ({ collapsed, toggled, handleToggleSidebar, handleCollapsedCh
                     <h5>{titulo} {tamboSel && ' - ' + tamboSel.nombre} </h5>
                 </div>
 
-                <div className="elem-header-der">
+                <div className="elem-header-der" >
                     {usuario &&
                         <>
-                            <Button
-                                variant="link"
-                                onClick={handleShow}
-                            >
-                                <IoIosNotificationsOutline size={32} />
-                                {alertasSinLeer &&
-                                    <Badge
-                                        variant={variante}
-                                    >
-                                        {alertasSinLeer.length}
-                                    </Badge>
-                                }
-                            </Button>
-                            &nbsp;
-                            &nbsp;
-                            &nbsp;
-                            <Button
-                                variant="outline-info"
-                                onClick={cerrarSesion}
-                            >
-                                <FiLogOut size={24} />
-                                &nbsp;
-                                {usuario.displayName}
-                            </Button>
+                            <div className="alert-container">
+                                <Button
+                                    variant="link"
+                                    onClick={handleShow}
+                                >
+                                    <IoIosNotificationsOutline size={32} />
+                                    {alertasSinLeer &&
+                                        <Badge
+                                            variant={variante}
+                                        >
+                                            {alertasSinLeer.length}
+                                        </Badge>
+                                    }
+                                </Button>
+                            </div>
                         </>
                     }
                 </div>
@@ -273,11 +262,6 @@ const Navegacion = ({ collapsed, toggled, handleToggleSidebar, handleCollapsedCh
                         )}
                     </div>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleHistorialClose}>
-                        Cerrar
-                    </Button>
-                </Modal.Footer>
             </Modal>
         </header>
     );

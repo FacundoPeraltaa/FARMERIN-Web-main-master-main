@@ -198,18 +198,13 @@ $icon-size: 35px;
     border-radius: 10px;
 
   }
-
   .elem-header{
     align-items: center;
     display: flex;
     padding: 0.5rem ;
     }
 
-  .elem-header-der{
-      align-items: center;
-      display:flex;
-      justify-content:space-between;
-    }
+
 
 
   .elem-porc-reduccion{
@@ -331,11 +326,6 @@ $icon-size: 35px;
     text-align: center;
   }
 
-  .elem-header-der {
-    display: flex;
-    width: 20em;
-    height: 6px;
-  }
 
 }
 
@@ -368,11 +358,6 @@ $icon-size: 35px;
     text-align: center;
   }
 
-  .elem-header-der {
-    display: flex;
-    width: 18em;
-    height: 6px;
-  }
 
 }
 
@@ -405,11 +390,7 @@ $icon-size: 35px;
     text-align: center;
   }
 
-  .elem-header-der {
-    display: flex;
-    width: 20em;
-    height: 6px;
-  }
+
 
 }
 
@@ -442,11 +423,6 @@ $icon-size: 35px;
     text-align: center;
   }
 
-  .elem-header-der {
-    display: flex;
-    width: 20em;
-    height: 6px;
-  }
 
 }
 
@@ -479,11 +455,7 @@ $icon-size: 35px;
     text-align: center;
   }
 
-  .elem-header-der {
-    display: flex;
-    width: 20em;
-    height: 6px;
-  }
+  
 
 }
 
@@ -517,11 +489,7 @@ $icon-size: 35px;
     text-align: center;
   }
 
-  .elem-header-der {
-    display: flex;
-    width: 20em;
-    height: 6px;
-  }
+
 
 }
 
@@ -559,11 +527,7 @@ $icon-size: 35px;
     text-align: center;
   }
 
-  .elem-header-der {
-    display: flex;
-    width: 20em;
-    height: 6px;
-  }
+
 
 }
 // MONITOR
@@ -1664,4 +1628,829 @@ button.btn-info:hover {
   font-size: 18px; // Tamaño de fuente
   line-height: 24px; // Altura de línea
   letter-spacing: 1px; // Espaciado entre letras
+}
+
+// Estilos para el modal de perfil
+.modal-perfil {
+    position: absolute;
+    right: 0;
+}
+.modal-perfil {
+    .modal-header {
+        background-color: #1b8aa5; // Color de fondo del encabezado
+        color: white; // Color del texto
+    }
+
+    .modal-body {
+        background-color: #f8f9fa; // Color de fondo del cuerpo del modal
+        color: #333; // Color del texto
+        h5 {
+            margin-bottom: 15px; // Espaciado entre los encabezados
+        }
+    }
+
+    .modal-footer {
+        background-color: #f1f1f1; // Color de fondo del pie del modal
+        button {
+            &:hover {
+                background-color: #1b8aa5; // Color de fondo al pasar el mouse
+                color: white; // Color del texto al pasar el mouse
+            }
+        }
+    }
+}
+
+// Estilos para el botón de perfil en la barra de navegación
+
+.elem-header-der {
+  display: flex;
+  justify-content: space-between; // Asegura que los elementos se distribuyan
+  align-items: center; // Centra verticalmente los elementos
+
+  .alert-container {
+      margin-right: auto; // Empuja el contenedor de alertas hacia la izquierda
+  }
+
+  .perfil-container {
+      margin-left: auto; // Empuja el contenedor de perfil hacia la derecha
+  }
+}
+
+// MODAL DE PERFIL
+// ... estilos existentes ...
+
+// ... estilos existentes ...
+
+.animales-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+
+  .obtener-button {
+      background-color: #4CAF50; // Color verde
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+
+      &:hover {
+          background-color: #45a049; // Color verde más oscuro al pasar el mouse
+      }
+  }
+}
+
+.card-botones-animales {
+  background-image: linear-gradient(163deg, #45a049 0%, #287fbd 100%);
+  border-radius: 20px;
+  transition: all .3s;
+  width: 100%;
+  border: 1px solid #080808;
+ }
+ 
+ .card-botones-animales2 {
+  width: 100%;
+  background-color: #fefafa;
+  border-radius:20px;
+  transition: all .2s;
+ }
+ 
+ .card-botones-animales2:hover {
+  transform: scale(0.98);
+  border-radius: 20px;
+  box-shadow: 0px 0px 30px 1px #2387cf;
+ }
+ 
+ .card-botones-animales:hover {
+  box-shadow: 0px 0px 30px 1px #1a741e;
+ }
+
+
+.tituloAnimales  {
+  font-size: 20px;
+  font-weight: bold;
+  color: #080808;
+  text-align: center;
+}
+  
+
+
+.AdverPerfil {
+  position: relative; /* Para posicionar el tooltip */
+  display: inline-flex; /* Para alinear el icono y el texto */
+  align-items: center; /* Centrar verticalmente */
+}
+
+/* From Uiverse.io by Cksunandh */ 
+/* Basic reset and styling */
+
+/* Tooltip container */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+  margin: 5px;
+}
+
+/* Icon styling */
+.icon-tooltip  {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #101010;
+  border-color: #080808;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+/* SVG Animation: Rotate and scale effect */
+.icon-tooltip svg {
+  transition: transform 0.5s ease-in-out;
+}
+
+.icon-tooltip:hover svg {
+  transform: rotate(360deg) scale(1.2);
+}
+
+.tooltip {
+  visibility: hidden;
+  width: 250px;
+  background-color: #ededed;
+  text-align: center;
+  border-radius: 5px;
+  padding: 10px;
+  position: absolute;
+  bottom: 125%; /* Position above the icon */
+  transform: translateX(-50%); /* Center the tooltip */
+  opacity: 0;
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+/* Tooltip Arrow */
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  margin-left: auto;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #ededed transparent transparent transparent;
+}
+
+/* Show tooltip on hover */
+.tooltip-container:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+.tooltip-container:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  animation: bounce 0.6s ease;
+}
+
+  /* BOTONES LISTA DE ANIMALES */ 
+.custom-obtenerAnimales-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  cursor: pointer;
+  width: 300px;
+  height: 30px;
+  background-image: linear-gradient(to top, #181818 0%, #0d0d0d 80%, #0b0b0b 100%);
+  border-radius: 30px;
+  border: 1px solid #3f3f3f;
+  transition: all 0.2s ease;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fffefe;
+  text-shadow: 0 1px #2c2c2c;
+  margin: auto;
+}
+
+.custom-obtenerAnimales-button:hover {
+  box-shadow: 0 4px 3px 1px #212121, 0 6px 8px #3f3f3f, 0 -4px 4px #3f3f3f, 0 -6px 4px #212121, inset 0 0 3px 3px #3f3f3f;
+}
+
+.custom-obtenerAnimales-button:active {
+  box-shadow: 0 4px 3px 1px #212121, 0 6px 8px #3f3f3f, 0 -4px 4px #3f3f3f, 0 -6px 4px #212121, inset 0 0 5px 3px #3f3f3f, inset 0 0 30px #3f3f3f;
+}
+
+.custom-obtenerAnimales-button:focus {
+  box-shadow: 0 4px 3px 1px #212121, 0 6px 8px #3f3f3f, 0 -4px 4px #3f3f3f, 0 -6px 4px #212121, inset 0 0 5px 3px #3f3f3f, inset 0 0 30px #3f3f3f;
+}
+
+
+.AdverPerfil:hover .tooltip {
+  visibility: visible; /* Mostrar el tooltip al pasar el mouse */
+  opacity: 1; /* Hacerlo visible */
+} 
+.AdverPerfilIcon{
+  margin-left: 5px; // Espacio entre el texto del título y la advertencia
+  font-size: 0.9em; // Tamaño del texto de advertencia
+  display: inline; // Asegura que se muestre en línea con el título
+  vertical-align: text-top; // Alineación vertical con el texto del título
+}
+
+
+.animales-list {
+  width: 190px;
+  height: 254px;
+  border-radius: 50px;
+  background: #e0e0e0;
+  box-shadow: 20px 20px 60px #bebebe,
+                -20px -20px 60px #ffffff;
+}
+
+.listaPerfil {
+  flex: 0 1 150px; // Permitir que cada lista tenga un ancho fijo de 150px
+  margin: 5px; // Espacio entre las listas de perfil
+  padding: 5px; // Espaciado interno
+  border: 1px solid #ccc; // Borde alrededor de cada lista
+  border-radius: 5px; // Bordes redondeados
+  background-color: #262626; // Fondo blanco para las listas
+  text-align: center; // Centrar el texto dentro de cada lista
+}
+
+.listaPerfil h3 {
+  margin: 0; // Sin margen para el encabezado de la lista
+  font-size: 18px; // Tamaño de fuente para los encabezados de las listas
+  color: #e9e7e7; // Color del texto para los encabezados
+}
+
+.listaPerfil p {
+  font-size: 15px;
+  margin: 5px 0; // Margen entre los párrafos
+  color: #e9e7e7; // Color del texto para los párrafos
+}
+
+.button-containerInfoTambo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+
+  .obtenerInfoTambo {
+      background-color: #4CAF50; // Color verde
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+
+      &:hover {
+          background-color: #45a049; // Color verde más oscuro al pasar el mouse 
+      }
+  }
+}
+///////////////////////////////////////////////77 PERFIL FARMERIN ///////////////////////////////////////////////////////////////
+.farmerin-card-container {
+  padding-top: 95px;
+}
+.farmerin-card {
+  max-width: 320px;
+  border-radius: 1rem;
+  background-color: #000000;
+  padding: 1rem;
+  margin: auto;
+}
+
+.farmerin-card-infos {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  grid-gap: 1rem;
+  gap: 1rem;
+}
+
+.farmerin-card-image {
+  height: 7rem;
+  width: 7rem;
+  border-radius: 0.5rem;
+  color: #e3e4e6;
+  background: linear-gradient(to bottom right, #45a049, #287fbd);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.farmerin-card-info {
+  height: 7rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.farmerin-card-name {
+  font-size: 1.25rem;
+  line-height: 1.25rem; // Ajustado para reducir el espacio
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  margin-bottom: 0.25rem; // Reducido para menos espacio
+  padding-top: 0.5rem;
+}
+
+.farmerin-card-tambo {
+  font-size: 1rem;
+  line-height: 1rem; // Ajustado para reducir el espacio
+  color: rgba(156, 163, 175, 1);
+}
+.farmerin-card-actions {
+  display: flex;
+  flex-direction: column;
+
+}
+ /////////////////////////////// BOTON OBTENER INFO TAMBO ///////////////////////////////
+.custom-obtenerInfoTambo-button {
+  text-decoration: none;
+  line-height: 1;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 10px 10px 20px rgba(0,0,0,.05);
+  background-color: #fff;
+  color: #121212;
+  border: none;
+  cursor: pointer;
+}
+
+.custom-obtenerInfoTambo-button-decor {
+  position: absolute;
+  inset: 0;
+  background-color: var(--clr);
+  transform: translateX(-100%);
+  transition: transform .3s;
+  z-index: 0;
+}
+
+.custom-obtenerInfoTambo-button-content {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
+
+.custom-obtenerInfoTambo-button__icon {
+  width: 48px;
+  height: 40px;
+  background-color: var(--clr);
+  display: grid;
+  place-items: center;
+}
+
+.custom-obtenerInfoTambo-button__text {
+  display: inline-block;
+  transition: color .2s;
+  padding: 1px 1.0rem 1px;
+  padding-left: .75rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 220px;
+}
+
+.custom-obtenerInfoTambo-button:hover .custom-obtenerInfoTambo-button__text {
+  color: #fff;
+}
+
+.custom-obtenerInfoTambo-button:hover .custom-obtenerInfoTambo-button-decor {
+  transform: translate(0);
+}
+/* MODAL OBTENER INFO TAMBO */
+
+.green-btn-horarios {
+  background-color: #47a04b;
+}
+
+.green-btn-horarios:hover {
+  background-color: #368339;
+}
+
+.green-btn-horarios:active {
+  background-color: #2d6830;
+}
+
+.green-btn-horarios:disabled {
+  background-color: #c8eac9;
+  color: #1b7a43;
+}
+
+.red-btn-horarios {
+  background-color: #f93a3a;
+}
+
+.red-btn-horarios:hover {
+  background-color: #e71f1f;
+}
+
+.red-btn-horarios:active {
+  background-color: #c21313;
+}
+
+.red-btn-horarios:disabled {
+  background-color: #ffc7c7;
+  color: #c21313;
+}
+
+.warning-horarios-general {
+  position: fixed; // Cambiado a fixed para que se centre en la pantalla
+  top: 0;
+  left: 0;
+  z-index: 999;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(2px);
+  display: flex; // Añadido para centrar el contenido
+  justify-content: center; // Centra horizontalmente
+  align-items: center; // Centra verticalmente
+}
+
+.confirmHorarios-div {
+  font-size: 14px;
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 6px;
+  box-shadow: 4px 4px 15px #3e3e3e;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  cursor: default;
+  background-color: #ccc;
+}
+
+.confirmHorarios-div button {
+  cursor: pointer;
+  width: 100%;
+  padding: 4px 6px;
+  border-radius: 4px;
+  color: #fff;
+  border: none;
+  height: 30px;
+  width: 100%;
+}
+
+.confirmHorarios-div p {
+  display: flex;
+  flex-direction: column;
+}
+
+.confirmHorarios-div p strong {
+  margin-bottom: 15px;
+}
+.text-center-horarios-p {
+  display: flex;
+  flex-direction: row;
+  margin:auto;
+}
+.text-center-horarios-span {
+   margin: auto;
+   text-align: center;
+   font-size: 12px;
+   color: #000000;
+   font-weight: bold;
+}
+
+
+.modal-horarios-container {
+  display: flex;
+  justify-content: center; // Alinea el botón con el Form.Control
+  align-items: center;
+}
+
+.modal-title {
+  font-size: 1rem; // Reduce el tamaño del título
+}
+
+.text-center p {
+  display: flex;
+  justify-content: center; // Centra los títulos: Turnos, Bajadas, Kgs. Tolvas
+  align-items: center;
+  margin: 0; // Asegura que no haya márgenes que desalineen el texto
+}
+
+///////////////////////////// BOTON OBTENER ANIMALES ///////////////////////////////
+/* From Uiverse.io by Creatlydev */ 
+.obtener-animales-button {
+  text-decoration: none;
+  line-height: 1;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 10px 10px 20px rgba(0,0,0,.05);
+  background-color: #fff;
+  color: #121212;
+  border: none;
+  cursor: pointer;
+}
+
+.obtener-animales-button-decor {
+  position: absolute;
+  inset: 0;
+  background-color: var(--clr);
+  transform: translateX(-100%);
+  transition: transform .3s;
+  z-index: 0;
+}
+
+.obtener-animales-button-content {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
+
+.obtener-animales-button__icon {
+  width: 48px;
+  height: 40px;
+  background-color: var(--clr);
+  display: grid;
+  place-items: center;
+}
+
+.obtener-animales-button__text {
+  display: inline-block;
+  transition: color .2s;
+  padding: 1px 1.0rem 1px;
+  padding-left: .75rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.obtener-animales-button:hover .obtener-animales-button__text {
+  color: #fff;
+}
+
+.obtener-animales-button:hover .obtener-animales-button-decor {
+  transform: translate(0);
+}
+.card-fondoBotones {
+ padding-top: 70px;
+ }
+///////////////////////////// BOTON CERRAR SESION /////////////////////////////// 
+.farmerin-footer {
+  padding-top: 40px;
+  display: flex; // Añadido para alinear los botones horizontalmente
+  justify-content: center; // Centra los botones en el contenedor
+  gap: 20px; // Espacio entre los botones
+}
+.Btn-footer-perfil {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: 0.4s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to right, #45a049, #287fbd);
+  margin: auto;
+}
+
+.sign-footer-perfil {
+  width: 100%;
+  transition-duration: 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign-footer-perfil svg {
+  width: 17px;
+}
+
+.sign-footer-perfil svg path {
+  fill: white;
+}
+
+.text-footer-perfil {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: #ecf0f1;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition-duration: 0.4s;
+}
+
+.Btn-footer-perfil:hover {
+  width: 150px;
+  border-radius: 20px;
+  transition-duration: 0.4s;
+  background: linear-gradient(to right, #287fbd, #45a049);
+}
+
+.Btn-footer-perfil:hover .sign-footer-perfil {
+  width: 30%;
+  transition-duration: 0.4s;
+  padding-left: 12px;
+}
+
+.Btn-footer-perfil:hover .text-footer-perfil {
+  opacity: 1;
+  width: 70%;
+  transition-duration: 0.4s;
+  padding-right: 10px;
+}
+
+.Btn-footer-perfil:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+}
+///////////////////////////// BOTON BORRAR TAMBO ///////////////////////////////
+/* From Uiverse.io by vinodjangid07 */ 
+.button-borrar-tambo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(20, 20, 20);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: .3s;
+  overflow: hidden;
+  position: relative;
+  margin: auto;
+}
+
+.svgIcon-borrar-tambo {
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  transition-duration: .3s;
+  justify-content: center;
+}
+
+.svgIcon-borrar-tambo path {
+  fill: white;
+}
+
+.button-borrar-tambo:hover {
+  width: 140px;
+  border-radius: 50px;
+  transition-duration: .3s;
+  background-color: rgb(255, 69, 69);
+  align-items: center;
+}
+
+.button-borrar-tambo:hover .svgIcon-borrar-tambo {
+  width: 50px;
+  transition-duration: .3s;
+  transform: translateY(60%);
+}
+
+.button-borrar-tambo::before {
+  position: absolute;
+  top: -20px;
+  content: "Borrar Tambo";
+  color: white;
+  transition-duration: .3s;
+  font-size: 2px;
+}
+
+.button-borrar-tambo:hover::before {
+  font-size: 13px;
+  opacity: 1;
+  transform: translateY(30px);
+  transition-duration: .3s;
+}
+
+/* MODAL BORRAR TAMBO */ 
+.confirmBorrar-div {
+  background-color: #ccc;
+}
+
+.green-btn-borrar {
+  background-color: #47a04b;
+}
+
+.green-btn-borrar:hover {
+  background-color: #368339;
+}
+
+.green-btn-borrar:active {
+  background-color: #2d6830;
+}
+
+.green-btn-borrar:disabled {
+  background-color: #c8eac9;
+  color: #1b7a43;
+}
+
+.red-btn-borrar {
+  background-color: #f93a3a;
+}
+
+.red-btn-borrar:hover {
+  background-color: #e71f1f;
+}
+
+.red-btn-borrar:active {
+  background-color: #c21313;
+}
+
+.red-btn-borrar:disabled {
+  background-color: #ffc7c7;
+  color: #c21313;
+}
+
+.confirmBorrar-div {
+  font-size: 14px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 6px;
+  box-shadow: 4px 4px 15px #3e3e3e;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  cursor: default;
+}
+
+.confirmBorrar-div button {
+  cursor: pointer;
+  width: 100%;
+  padding: 4px 6px;
+  border-radius: 4px;
+  color: #fff;
+  border: none;
+  height: 30px;
+  width: 100%;
+}
+
+.confirmBorrar-div p {
+  display: flex;
+  flex-direction: column;
+}
+
+.confirmBorrar-div p strong {
+  margin-bottom: 15px;
+}
+
+.warning-borrar-general {
+  position: absolute; /* switch to fixed */
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(2px);
+}
+
+.warning-borrar-generala {
+  padding-top: 100px;
+  height: 1px;
+  width: 1px;
+}
+
+.modal-borrar-container {
+  display: flex;
+  flex-direction: row;
+  height: 32px;
+  margin-top: 20px;
+  gap: 7px;
+  width: 100%;
 }
