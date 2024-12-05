@@ -149,12 +149,8 @@ const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
               <MenuItem icon={<FaHandsHelping size={15} />}>
                 Ayuda</MenuItem>
             </Link>
-
           </Menu>
         </SidebarContent>
-
-      
-
         <SidebarFooter style={{ textAlign: 'center' }}>
           <div
             className="sidebar-btn-wrapper"
@@ -163,8 +159,10 @@ const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
             }}
           >
             <Link href="/perfilFarmerin">
-              <MenuItem icon={<FaHandsHelping size={15} />}>
-                Mi Farmerin</MenuItem>
+              <a className="sidebar-btn" rel="noopener noreferrer">
+                <img width={25} src="/logoFbW.png" alt="Mi Farmerin" />
+                <span> Mi Farmerin</span>
+              </a>
             </Link>
           </div>
         </SidebarFooter>

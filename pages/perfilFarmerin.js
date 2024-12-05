@@ -94,7 +94,7 @@ const UserProfile = () => {
                 </p>
                 <div className="modal-borrar-container">
                   <button className="red-btn-borrar" onClick={handleClose}>No, cancelar</button>
-                  <button className="green-btn-borrar" onClick={eliminarTambo}>Si, borrar {tamboSel ? tamboSel.nombre : 'No seleccionado'}</button>
+                  <button className="green-btn-borrar" onClick={eliminarTambo}>Borrar {tamboSel ? tamboSel.nombre : 'No seleccionado'}</button>
                 </div>
               </div>
             </div>
