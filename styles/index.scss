@@ -686,7 +686,7 @@ $icon-size: 35px;
   font-size: 15px;
   color: #666;
   margin-top: 10px;
-  text-align: center;
+  text-align: center;
   font-weight: bold;
   margin-left: 20px;
   //margin-top: 350px;
@@ -1685,12 +1685,13 @@ button.btn-info:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 0; // Elimina márgenes inferiores
+  padding: 0; // Elimina padding si es necesario
 
   .obtener-button {
       background-color: #4CAF50; // Color verde
       color: white;
-      padding: 10px 20px;
+      padding: 5px 20px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
@@ -1834,24 +1835,32 @@ button.btn-info:hover {
 }
 
   /* BOTONES LISTA DE ANIMALES */ 
+  .animales-list-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding-top: 10px;
+  }
 .custom-obtenerAnimales-button {
   display: flex;
   align-items: center;
   justify-content: center;
   outline: none;
   cursor: pointer;
-  width: 300px;
-  height: 30px;
+  width: 150px;
+  height: 40px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
   background-image: linear-gradient(to top, #181818 0%, #0d0d0d 80%, #0b0b0b 100%);
-  border-radius: 30px;
+  border-radius: 10px;
   border: 1px solid #3f3f3f;
   transition: all 0.2s ease;
   font-family: "Source Sans Pro", sans-serif;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 400;
   color: #fffefe;
   text-shadow: 0 1px #2c2c2c;
-  margin: auto;
 }
 
 .custom-obtenerAnimales-button:hover {
@@ -1914,7 +1923,8 @@ button.btn-info:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 0; // Elimina márgenes inferiores
+  padding: 0; // Elimina padding si es necesario
 
   .obtenerInfoTambo {
       background-color: #4CAF50; // Color verde
@@ -1987,13 +1997,14 @@ button.btn-info:hover {
 .farmerin-card-actions {
   display: flex;
   flex-direction: column;
-
+  gap: 10px; // Ajusta este valor para reducir el espacio entre los botones
+  align-items: center; // Asegura que los botones estén centrados
 }
  /////////////////////////////// BOTON OBTENER INFO TAMBO ///////////////////////////////
 .custom-obtenerInfoTambo-button {
   text-decoration: none;
   line-height: 1;
-  border-radius: 1.5rem;
+  border-radius: 10px;
   overflow: hidden;
   position: relative;
   box-shadow: 10px 10px 20px rgba(0,0,0,.05);
@@ -2031,7 +2042,7 @@ button.btn-info:hover {
 .custom-obtenerInfoTambo-button__text {
   display: inline-block;
   transition: color .2s;
-  padding: 1px 1.0rem 1px;
+  padding: 1px 0.8rem 1px;
   padding-left: .75rem;
   overflow: hidden;
   white-space: nowrap;
@@ -2163,7 +2174,7 @@ button.btn-info:hover {
 .obtener-animales-button {
   text-decoration: none;
   line-height: 1;
-  border-radius: 1.5rem;
+  border-radius: 10px;
   overflow: hidden;
   position: relative;
   box-shadow: 10px 10px 20px rgba(0,0,0,.05);
