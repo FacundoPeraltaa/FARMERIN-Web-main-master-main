@@ -6,13 +6,16 @@ import Layout from '../components/layout/layout';
 import DetalleAnimal from '../components/layout/detalleAnimal';
 import SelectTambo from '../components/layout/selectTambo';
 import StickyTable from "react-sticky-table-thead"
+import { useDispatch } from 'react-redux'; // Import useDispatch
+import { addNotification } from '../redux/notificacionSlice'; // Ensure this import is correct
 
-import { Button, Form, Row, Col, Alert, Spinner, Table } from 'react-bootstrap';
+import { Button, Form, Row, Col, Alert, Spinner, Table, Modal } from 'react-bootstrap';
 import { RiAddBoxLine, RiSearchLine } from 'react-icons/ri';
 import { FaSort } from 'react-icons/fa';
 
 const Animales = () => {
 
+  const dispatch = useDispatch(); // Initialize dispatch
   const [elim, guardarElim] = useState(false);
   const [error, guardarError] = useState();
   const [animales, guardarAnimales] = useState([]);
@@ -28,6 +31,8 @@ const Animales = () => {
   const [orderEr, guardarOrderEr] = useState('asc');
   const [orderEp, guardarOrderEp] = useState('asc');
   const [valor, setValor] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
 
 
   
@@ -42,6 +47,7 @@ const Animales = () => {
     if (tamboSel) {
       buscarAnimales();
       aplicarFiltro();
+      mostrarMensajeModal();
     }
 
   }, [tamboSel, elim])
@@ -160,6 +166,32 @@ const Animales = () => {
 
   }
 
+  const mostrarMensajeModal = async () => {
+    try {
+      const tamboDoc = await firebase.db.collection('tambo').doc(tamboSel.id).get();
+      const porcentaje = tamboDoc.data().porcentaje;
+
+      let mensaje;
+      if (porcentaje > 0) {
+        mensaje = `AUMENTO DE LA RACION.`;
+      } else if (porcentaje < 0) {
+        mensaje = `REDUCCION DE LA RACION.`;
+      }
+
+      if (mensaje) {
+        setModalMessage(mensaje);
+        dispatch(addNotification({
+          id: Date.now(),
+          mensaje,
+          fecha: firebase.nowTimeStamp(),
+        }));
+        setShowModal(true);
+      }
+    } catch (error) {
+      console.error("Error fetching porcentaje:", error);
+    }
+  };
+
   return (
 
     <Layout
@@ -271,6 +303,21 @@ const Animales = () => {
           <SelectTambo />
 
       }
+
+      {/* Modal for notifications */}
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Notificaciones</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>{modalMessage}</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Layout >
 
   )

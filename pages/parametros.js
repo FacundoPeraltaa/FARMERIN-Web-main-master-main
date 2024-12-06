@@ -1,11 +1,11 @@
 // src/components/Parametros.js
 import React, { useState, useEffect, useContext } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FirebaseContext } from '../firebase2';
 import Layout from '../components/layout/layout';
 import DetalleParametro from '../components/layout/detalleParametro';
 import SelectTambo from '../components/layout/selectTambo';
-import { Button, DropdownButton, Dropdown } from 'react-bootstrap';
+import { Button, DropdownButton, Dropdown, Modal } from 'react-bootstrap';
 import { format } from 'date-fns';
 import { addNotification } from '../redux/notificacionSlice';
 
@@ -15,10 +15,13 @@ const Parametros = () => {
   const [selectedChange, setSelectedChange] = useState(null);
   const [isIncrease, setIsIncrease] = useState(true);
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
+  const notifications = useSelector((state) => state.notificaciones.notifications);
 
   useEffect(() => {
     if (tamboSel) {
       obtenerPorcentaje();
+
     }
   }, [tamboSel]);
 
@@ -76,6 +79,10 @@ const Parametros = () => {
       }));
 
       console.log(tamboSel);
+
+      // Show modal notification
+      setShowModal(true);
+
     } catch (error) {
       console.log(error);
     }
@@ -122,6 +129,8 @@ const Parametros = () => {
       }
     }
   };
+
+
 
   let porcentaje;
 
@@ -225,6 +234,7 @@ const Parametros = () => {
           :
           <SelectTambo />
       }
+
     </Layout >
 
   );

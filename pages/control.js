@@ -6,9 +6,10 @@ import DetalleControl from '../components/layout/detalleControl';
 import SelectTambo from '../components/layout/selectTambo';
 import StickyTable from "react-sticky-table-thead";
 import differenceInDays from 'date-fns/differenceInDays';
-import { Alert, Table } from 'react-bootstrap';
+import { Alert, Table, Modal, Button } from 'react-bootstrap';
 import { FaSort } from 'react-icons/fa';
-
+import { useDispatch } from 'react-redux'; // Import useDispatch
+import { addNotification } from '../redux/notificacionSlice'; 
 // Control
 
 const Control = () => {
@@ -29,6 +30,8 @@ const Control = () => {
     const [orderDl, guardarOrderDl] = useState('asc');
     const [orderDP, guardarOrderDP] = useState('asc');
     const [orderRac, guardarOrderRac] = useState('asc');
+    const [showModal, setShowModal] = useState(false);
+    const [modalMessage, setModalMessage] = useState('');
 
     const { firebase, tamboSel } = useContext(FirebaseContext);
     let prom = 0;
@@ -49,10 +52,36 @@ const Control = () => {
             }
             //busca los animales en ordeñe
             obtenerAnim();
+            mostrarMensajeModal();
 
         }
     }, [tamboSel])
 
+    const mostrarMensajeModal = async () => {
+        try {
+            const tamboDoc = await firebase.db.collection('tambo').doc(tamboSel.id).get();
+            const porcentaje = tamboDoc.data().porcentaje;
+
+            let mensaje;
+            if (porcentaje > 0) {
+                mensaje = `AUMENTO DE LA RACION.`;
+            } else if (porcentaje < 0) {
+                mensaje = `REDUCCION DE LA RACION.`;
+            }
+
+            if (mensaje) {
+                setModalMessage(mensaje);
+                dispatch(addNotification({
+                    id: Date.now(),
+                    mensaje,
+                    fecha: firebase.nowTimeStamp(),
+                }));
+                setShowModal(true);
+            }
+        } catch (error) {
+            console.error("Error fetching porcentaje:", error);
+        }
+    };
 
     useEffect(() => {
         promedioActual();
@@ -367,6 +396,21 @@ const Control = () => {
                 <SelectTambo />
 
             }
+
+              {/* Modal for notifications */}
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Notificaciones</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>{modalMessage}</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+            </Modal>
         </Layout >
 
     )
