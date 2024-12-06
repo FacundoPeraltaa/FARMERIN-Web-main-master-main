@@ -34,6 +34,7 @@ const Control = () => {
     const [modalMessage, setModalMessage] = useState('');
 
     const { firebase, tamboSel } = useContext(FirebaseContext);
+    const dispatch = useDispatch(); // Ensure dispatch is defined
     let prom = 0;
     let promS = 0;
     let promL = 0;

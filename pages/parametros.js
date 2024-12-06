@@ -53,25 +53,32 @@ const Parametros = () => {
     setPorc(nuevoPorcentaje);
 
     try {
-      await firebase.db.collection('tambo').doc(tamboSel.id).update(p);
+      const batch = firebase.db.batch();
 
-      // Obtener la colección de animales
+      // Update 'tambo' collection
+      const tamboRef = firebase.db.collection('tambo').doc(tamboSel.id);
+      batch.update(tamboRef, p);
+
+      // Update 'animal' collection
       const animalesSnapshot = await firebase.db.collection('animal').where('tamboId', '==', tamboSel.id).get();
-
-      animalesSnapshot.forEach(async (doc) => {
+      animalesSnapshot.forEach((doc) => {
         const animalData = doc.data();
         if (!animalData.fbaja && !animalData.mbaja) {
-          await firebase.db.collection('animal').doc(doc.id).update(pAnimal);
+          const animalRef = firebase.db.collection('animal').doc(doc.id);
+          batch.update(animalRef, pAnimal);
         }
       });
 
-      // Agregar notificación en Firestore
-      await firebase.db.collection('tambo').doc(tamboSel.id).collection('notificaciones').add({
+      // Commit batch
+      await batch.commit();
+
+      // Add notification in Firestore
+      await tamboRef.collection('notificaciones').add({
         mensaje: isIncrease ? `AUMENTO DEL ${selectedChange} %` : `REDUCCIÓN DEL ${selectedChange} %`,
         fecha: firebase.nowTimeStamp(),
       });
 
-      // Agregar notificación en Redux
+      // Add notification in Redux
       dispatch(addNotification({
         id: Date.now(),
         mensaje: isIncrease ? `AUMENTO DEL ${selectedChange} %` : `REDUCCIÓN DEL ${selectedChange} %`,
