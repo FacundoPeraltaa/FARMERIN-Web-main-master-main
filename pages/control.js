@@ -346,18 +346,18 @@ const Control = () => {
     }
 
     // CALCULA RACION MODIFICADA CON DECIMALES
-     const calcularRacionModificada = (animalData) => {
+   /*  const calcularRacionModificada = (animalData) => {
         // Lógica para calcular la ración modificada
          return animalData.racion * animalData.porcentaje;
-    };
+    };*/
 
     // CALCULA RACION MODIFICADA CON ENTEROS
-   /* const calcularRacionModificada = (animalData) => {
+    const calcularRacionModificada = (animalData) => {
         //Implementa tu lógica para calcular la ración modificada
           const modificoRacion = animalData.racion * animalData.porcentaje;
         // Redondea el resultado al entero más cercano
         return Math.round(modificoRacion);
-    };*/
+    };
 
     return (
 
