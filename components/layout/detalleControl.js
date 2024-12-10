@@ -6,7 +6,7 @@ import { Alert, Form, Button, Overlay, OverlayTrigger, Tooltip } from 'react-boo
 import differenceInDays from 'date-fns/differenceInDays';
 import { format } from 'date-fns'
 
-const DetalleControl = ({ animal, animales, guardarAnimales }) => {
+const DetalleControl = ({ animal, animales, guardarAnimales, racionModificada }) => {
 
    const { id, rp, lactancia, estrep, fparto, fservicio, categoria, racion, uc, ca, anorm, sugerido, rodeo, actu, diasLact,diasPre,fuc,fracion } = animal;
    const [sug, guardarSug] = useState(0);
@@ -99,7 +99,7 @@ const DetalleControl = ({ animal, animales, guardarAnimales }) => {
          <td >{diasLact}</td>
          <td >{estrep}</td>
          <td >{diasPre}</td>
-         <td  >{racion}
+         <td  >{racionModificada}
             <Overlay target={target.current} show={actu} placement="left">
                {({ placement, arrowProps, show: _show, popper, ...props }) => (
                   <div

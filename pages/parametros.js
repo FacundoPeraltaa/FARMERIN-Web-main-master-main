@@ -1,11 +1,11 @@
 // src/components/Parametros.js
 import React, { useState, useEffect, useContext } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { FirebaseContext } from '../firebase2';
 import Layout from '../components/layout/layout';
 import DetalleParametro from '../components/layout/detalleParametro';
 import SelectTambo from '../components/layout/selectTambo';
-import { Button, DropdownButton, Dropdown, Modal } from 'react-bootstrap';
+import { Button, DropdownButton, Dropdown } from 'react-bootstrap';
 import { format } from 'date-fns';
 import { addNotification } from '../redux/notificacionSlice';
 
@@ -15,13 +15,10 @@ const Parametros = () => {
   const [selectedChange, setSelectedChange] = useState(null);
   const [isIncrease, setIsIncrease] = useState(true);
   const dispatch = useDispatch();
-  const [showModal, setShowModal] = useState(false);
-  const notifications = useSelector((state) => state.notificaciones.notifications);
 
   useEffect(() => {
     if (tamboSel) {
       obtenerPorcentaje();
-
     }
   }, [tamboSel]);
 
@@ -53,32 +50,25 @@ const Parametros = () => {
     setPorc(nuevoPorcentaje);
 
     try {
-      const batch = firebase.db.batch();
+      await firebase.db.collection('tambo').doc(tamboSel.id).update(p);
 
-      // Update 'tambo' collection
-      const tamboRef = firebase.db.collection('tambo').doc(tamboSel.id);
-      batch.update(tamboRef, p);
-
-      // Update 'animal' collection
+      // Obtener la colección de animales
       const animalesSnapshot = await firebase.db.collection('animal').where('tamboId', '==', tamboSel.id).get();
-      animalesSnapshot.forEach((doc) => {
+
+      animalesSnapshot.forEach(async (doc) => {
         const animalData = doc.data();
         if (!animalData.fbaja && !animalData.mbaja) {
-          const animalRef = firebase.db.collection('animal').doc(doc.id);
-          batch.update(animalRef, pAnimal);
+          await firebase.db.collection('animal').doc(doc.id).update(pAnimal);
         }
       });
 
-      // Commit batch
-      await batch.commit();
-
-      // Add notification in Firestore
-      await tamboRef.collection('notificaciones').add({
+      // Agregar notificación en Firestore
+      await firebase.db.collection('tambo').doc(tamboSel.id).collection('notificaciones').add({
         mensaje: isIncrease ? `AUMENTO DEL ${selectedChange} %` : `REDUCCIÓN DEL ${selectedChange} %`,
         fecha: firebase.nowTimeStamp(),
       });
 
-      // Add notification in Redux
+      // Agregar notificación en Redux
       dispatch(addNotification({
         id: Date.now(),
         mensaje: isIncrease ? `AUMENTO DEL ${selectedChange} %` : `REDUCCIÓN DEL ${selectedChange} %`,
@@ -86,10 +76,6 @@ const Parametros = () => {
       }));
 
       console.log(tamboSel);
-
-      // Show modal notification
-      setShowModal(true);
-
     } catch (error) {
       console.log(error);
     }
@@ -136,8 +122,6 @@ const Parametros = () => {
       }
     }
   };
-
-
 
   let porcentaje;
 
@@ -241,7 +225,6 @@ const Parametros = () => {
           :
           <SelectTambo />
       }
-
     </Layout >
 
   );

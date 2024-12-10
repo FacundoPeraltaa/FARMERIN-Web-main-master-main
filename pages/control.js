@@ -32,6 +32,7 @@ const Control = () => {
     const [orderRac, guardarOrderRac] = useState('asc');
     const [showModal, setShowModal] = useState(false);
     const [modalMessage, setModalMessage] = useState('');
+    const [promRacMod, guardarPromRacMod] = useState(0);
 
     const { firebase, tamboSel } = useContext(FirebaseContext);
     const dispatch = useDispatch(); // Ensure dispatch is defined
@@ -65,9 +66,9 @@ const Control = () => {
 
             let mensaje;
             if (porcentaje > 0) {
-                mensaje = `AUMENTO DE LA RACION.`;
+                mensaje = `AUMENTO DE LA RACION APLICADO.`;
             } else if (porcentaje < 0) {
-                mensaje = `REDUCCION DE LA RACION.`;
+                mensaje = `REDUCCION DE LA RACION APLICADO.`;
             }
 
             if (mensaje) {
@@ -91,10 +92,13 @@ const Control = () => {
 
     //const calcular promedio de racion
     const promedioActual = () => {
+        let totalRacMod = 0;
+
         animales.every(a => {
             promL = promL + parseInt(a.diasLact);
             prom = prom + parseInt(a.racion);
             promS = promS + parseInt(a.sugerido);
+            totalRacMod += parseFloat(a.racionModificada);
             return true;
         });
 
@@ -105,11 +109,13 @@ const Control = () => {
             promS = promS.toFixed(2);
             promL = promL / animales.length;
             promL = promL.toFixed(2);
+            const promRacModificado = (totalRacMod / animales.length).toFixed(2);
+
             guardarPromAct(prom);
             guardarPromSug(promS);
             guardarPromLac(promL);
+            guardarPromRacMod(promRacModificado);
         }
-
     }
 
 
@@ -137,6 +143,7 @@ const Control = () => {
                 diasLact: diasLact,
                 diasPre: diasPre,
                 actu: false,
+                racionModificada: calcularRacionModificada(doc.data()), // Cálculo actualizado
                 ...doc.data()
             }
 
@@ -338,6 +345,20 @@ const Control = () => {
         }
     }
 
+    // CALCULA RACION MODIFICADA CON DECIMALES
+     const calcularRacionModificada = (animalData) => {
+        // Lógica para calcular la ración modificada
+         return animalData.racion * animalData.porcentaje;
+    };
+
+    // CALCULA RACION MODIFICADA CON ENTEROS
+   /* const calcularRacionModificada = (animalData) => {
+        //Implementa tu lógica para calcular la ración modificada
+          const modificoRacion = animalData.racion * animalData.porcentaje;
+        // Redondea el resultado al entero más cercano
+        return Math.round(modificoRacion);
+    };*/
+
     return (
 
         <Layout
@@ -345,7 +366,7 @@ const Control = () => {
         >
 
             <Botonera>
-                <h6>Control de alimentación: {animales.length} animales - Promedio actual: {promAct} Kgs.- Promedio Sugerido: {promSug} Kgs.- Promedio Dias Lact.: {promLac} Dias.</h6>
+                <h6>Control de alimentación: {animales.length} animales - Promedio actual: {promRacMod} Kgs.- Promedio Sugerido: {promSug} Kgs.- Promedio Dias Lact.: {promLac} Dias.</h6>
             </Botonera >
 
             {tamboSel ?
@@ -371,7 +392,7 @@ const Control = () => {
                                         <th onClick={handleClickDl}>Días Lact. <FaSort size={15} /></th>
                                         <th onClick={handleClickER}>Est. Rep. <FaSort size={15} /></th>
                                         <th onClick={handleClickDP}>Días Preñ. <FaSort size={15} /></th>
-                                        <th onClick={handleClickRac}>Ración. <FaSort size={15} /></th>
+                                        <th onClick={handleClickRac}>Ración  <FaSort size={15} /></th>
                                         <th>F.Racion </th>
                                         <th></th>
                                         <th>Ración Sugerida</th>
@@ -385,10 +406,9 @@ const Control = () => {
                                             animal={a}
                                             animales={animales}
                                             guardarAnimales={guardarAnimales}
-
+                                            racionModificada={a.racionModificada}
                                         />
-                                    )
-                                    )}
+                                    ))}
                                 </tbody>
                             </Table>
                         </StickyTable>

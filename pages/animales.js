@@ -173,9 +173,9 @@ const Animales = () => {
 
       let mensaje;
       if (porcentaje > 0) {
-        mensaje = `AUMENTO DE LA RACION.`;
+        mensaje = `AUMENTO DE LA RACION APLICADO.`;
       } else if (porcentaje < 0) {
-        mensaje = `REDUCCION DE LA RACION.`;
+        mensaje = `REDUCCION DE LA RACION APLICADO.`;
       }
 
       if (mensaje) {
