@@ -158,6 +158,18 @@ const ControlLechero = () => {
     guardarFile(null);
   }
 
+  const handleDragOver = e => {
+    e.preventDefault();
+  }
+
+  const handleDrop = e => {
+    e.preventDefault();
+    const f = e.dataTransfer.files[0];
+    if (f) {
+      guardarFile(f);
+    }
+  }
+
   return (
 
     <Layout
@@ -183,7 +195,11 @@ const ControlLechero = () => {
             </Row>
             <Row className="justify-content-center" style={{ marginTop: '20px' }}>
               <Col xs={12} md={6}>
-                <div className="container-ControlLechero">
+                <div 
+                  className="container-ControlLechero" 
+                  onDragOver={handleDragOver} 
+                  onDrop={handleDrop}
+                >
                   <div className="header-ControlLechero" onClick={() => document.getElementById('archivoExcel').click()}>
                     <svg
                       viewBox="0 0 24 24"

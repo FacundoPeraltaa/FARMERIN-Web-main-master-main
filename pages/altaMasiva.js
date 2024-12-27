@@ -218,7 +218,7 @@ const AltaMasiva = () => {
       if (estpro == 'seca') {
         estpro = 'seca';
       } else if (estpro == 'en ordeñe') {
-        estpro = 'En Ordeñe';
+        estpro = 'En Orde��e';
       } else {
         e = "Fila N°: " + a.fila + " / RP: " + a.rp + " - Estado productivo incorrecto ";
         guardarErrores(errores => [...errores, e]);
@@ -250,7 +250,7 @@ const AltaMasiva = () => {
     }
     //valida que si los kg de racion sean numericos y mayor a cero
     if (isNaN(a.racion)) {
-      e = "Fila N°: " + a.fila + " / RP: " + a.rp + " - Los Kg. de racion debe ser un valor num��rico";
+      e = "Fila N°: " + a.fila + " / RP: " + a.rp + " - Los Kg. de racion debe ser un valor numerico";
       guardarErrores(errores => [...errores, e]);
       errores = true;
     } else {
@@ -299,7 +299,7 @@ const AltaMasiva = () => {
     
     //valida que si el control lechero tiene valores, sea numerico
     if (isNaN(a.uc)) {
-      e = "Fila N°: " + a.fila + " / RP: " + a.rp + " - Los litros deben ser un valor numérico";
+      e = "Fila N°: " + a.fila + " / RP: " + a.rp + " - Los litros deben ser un valor numerico";
       guardarErrores(errores => [...errores, e]);
       errores = true;
     }
@@ -386,6 +386,18 @@ const AltaMasiva = () => {
     guardarFile(null);
   }
 
+  const handleDragOver = (e) => {
+    e.preventDefault(); // Previene el comportamiento por defecto
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault(); // Previene el comportamiento por defecto
+    const f = e.dataTransfer.files[0]; // Obtiene el archivo arrastrado
+    if (f) {
+      guardarFile(f); // Guarda el archivo
+    }
+  };
+
   return (
 
     <Layout
@@ -399,7 +411,11 @@ const AltaMasiva = () => {
           >
             <Row>
               <Col>
-                <div className="container-AltaMasiva">
+                <div 
+                  className="container-AltaMasiva" 
+                  onDragOver={handleDragOver} // Maneja el evento de arrastre
+                  onDrop={handleDrop} // Maneja el evento de soltar
+                >
                   <div className="header-AltaMasiva" onClick={() => document.getElementById('file').click()}>
                     <svg
                       viewBox="0 0 24 24"
@@ -414,7 +430,7 @@ const AltaMasiva = () => {
                         strokeLinejoin="round"
                       />
                     </svg>
-                    <p>Cargar archivo de actualizacion</p>
+                    <p>Cargar archivo de alta</p>
                   </div>
                   <label htmlFor="file" className="footer-AltaMasiva">
                     <svg
@@ -439,7 +455,7 @@ const AltaMasiva = () => {
             <Row className="justify-content-center" style={{ marginTop: '20px' }}>
               <Col xs={12} md={6}>
                 <button className="button-AltaMasiva" type="submit">
-                  <span className="span-AltaMasiva">Cargar Animales</span>
+                  <span className="span-AltaMasiva">Cargar Alta Masiva</span>
                   <svg
                     className="svg-AltaMasiva"
                     xmlns="http://www.w3.org/2000/svg"

@@ -283,18 +283,30 @@ const Actualizacion = () => {
 
   }
 
+  const handleDragOver = (e) => {
+    e.preventDefault(); // Previene el comportamiento por defecto
+  };
 
-  const onFileChange = e => {
-    const f = e.target.files[0];
+  const handleDrop = (e) => {
+    e.preventDefault(); // Previene el comportamiento por defecto
+    const f = e.dataTransfer.files[0]; // Obtiene el archivo arrastrado
     if (f) {
       setFileName(f.name); // Muestra el nombre del archivo seleccionado
-      guardarFile(f);
+      guardarFile(f); // Guarda el archivo
+    }
+  };
+
+  const onFileChange = (e) => {
+    const f = e.target.files[0]; // Obtiene el archivo seleccionado
+    if (f) {
+      setFileName(f.name); // Muestra el nombre del archivo seleccionado
+      guardarFile(f); // Guarda el archivo
     }
   };
 
   const clearFile = () => {
-    setFileName('Ningun archivo seleccionado'); // Resetea el nombre del archivo
-    guardarFile(null); // Limpia el archivo seleccionado
+    setFileName('Ningun archivo seleccionado'); // Restablece el nombre del archivo
+    guardarFile(null); // Limpia el archivo guardado
   };
 
   return (
@@ -311,7 +323,11 @@ const Actualizacion = () => {
           >
             <Row className="justify-content-center">
               <Col xs={12} md={6}>
-                <div className="container-ActMasiva">
+                <div 
+                  className="container-ActMasiva" 
+                  onDragOver={handleDragOver} // Maneja el evento de arrastre
+                  onDrop={handleDrop} // Maneja el evento de soltar
+                >
                   <div className="header-ActMasiva" onClick={() => document.getElementById('file').click()}>
                     <svg
                       viewBox="0 0 24 24"
