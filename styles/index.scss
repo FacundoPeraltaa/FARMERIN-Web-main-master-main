@@ -694,6 +694,54 @@ $icon-size: 35px;
 
 // ESTILOS DE AYUDA 
 
+/* From Uiverse.io by louloudev59 */ 
+.llamadas-link {
+  display: inline-block;
+}
+
+.llamadas-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background-color: #1a89a4;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #fefeff;
+  text-decoration: none;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  margin: auto;
+  height: 50px;
+  width: 150px;
+}
+
+.llamadas-btn svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.llamadas-btn:hover {
+  padding: 10px 20px;
+}
+
+.llamadas-btn:hover svg {
+  display: none;
+}
+
+.llamadas-text {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.llamadas-btn:hover .llamadas-text {
+  opacity: 1;
+}
+
 
 .contact-page {
   display: flex;
@@ -3015,7 +3063,7 @@ button.btn-info:hover {
   align-items: center;
   font-size: 15px;
   margin: auto;
-  width: 318px;
+  width: 317px;
 }
 
 

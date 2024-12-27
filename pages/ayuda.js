@@ -9,48 +9,63 @@ const Ayuda = () => {
         <div className="social-section">
           <h2 className="titulo-ayuda">Contacto</h2>
           <div className="contact-item">
-            <a className="contact-item"> 
-              <FaPhone />
-              <span>2227-623372</span>
+          <a href="" target="_blank" rel="noopener noreferrer" className='A-textAtras' style={{ textDecoration: 'none' }}>
+
+              <button className="llamadas-btn">
+                <FaPhone style={{ color: '#fefeff' }}/>
+                <span className="llamadas-text">2227623372</span>
+              </button>
+       </a>
+          </div>
+          <div className="contact-item">
+            <a href="http://api.whatsapp.com/send?phone=5492227623372" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+              <button className="llamadas-btn">
+                <FaWhatsapp style={{ color: '#fefeff' }}/>
+                <span className="llamadas-text">WhatsApp</span>
+              </button>
             </a>
           </div>
           <div className="contact-item">
-            <a href="http://api.whatsapp.com/send?phone=5492227623372" target="_blank" rel="noopener noreferrer">
-              <FaWhatsapp />
-              <span>WhatsApp</span>
-            </a>
-          </div>
-          <div className="contact-item">
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=farmerin.navarro@gmail.com" target="_blank" rel="noopener noreferrer">
-              <FaEnvelope />
-              <span>E-mail</span>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=farmerin.navarro@gmail.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+              <button className="llamadas-btn">
+                <FaEnvelope style={{ color: '#fefeff' }}/>
+                <span className="llamadas-text">E-mail</span>
+              </button>
             </a>
           </div>
         </div>
         <div className="social-section">
           <h2 className="titulo-ayuda">Redes</h2>
           <div className="contact-item">
-            <a href="https://www.youtube.com/@farmerin8076/videos" target="_blank" rel="noopener noreferrer">
-              <FaYoutube />
-              <span>YouTube</span>
+            <a href="https://www.youtube.com/@farmerin8076/videos" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+              <button className="llamadas-btn">
+                <FaYoutube style={{ color: '#fefeff' }}/>
+                <span className="llamadas-text">YouTube</span>
+              </button>
             </a>
           </div>
           <div className="contact-item">
-            <a href="https://www.instagram.com/farmerinar/" target="_blank" rel="noopener noreferrer">
-              <FaInstagram />
-              <span>Instagram</span>
+            <a href="https://www.instagram.com/farmerinar/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+              <button className="llamadas-btn">
+                <FaInstagram style={{ color: '#fefeff' }}/>
+                <span className="llamadas-text">Instagram</span>
+              </button>
             </a>
           </div>
           <div className="contact-item">
-            <a href="https://www.facebook.com/farmerinarg" target="_blank" rel="noopener noreferrer">
-              <FaFacebook />
-              <span>Facebook</span>
+            <a href="https://www.facebook.com/farmerinarg" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+              <button className="llamadas-btn">
+                <FaFacebook style={{ color: '#fefeff' }}/>
+                <span className="llamadas-text">Facebook</span>
+              </button>
             </a>
           </div>
           <div className="contact-item">
-            <a href="https://www.farmerin.com.ar/" target="_blank" rel="noopener noreferrer">
-              <FaGlobe />
-              <span>Nuestro Sitio Web</span>
+            <a href="https://www.farmerin.com.ar/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+              <button className="llamadas-btn">
+                <FaGlobe style={{ color: '#fefeff' }}/>
+                <span className="llamadas-text">Sitio Web</span>
+              </button>
             </a>
           </div>
         </div>
