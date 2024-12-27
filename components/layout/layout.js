@@ -43,7 +43,9 @@ const Layout = props => {
       />
 
       <main>
-
+        <header>
+          <h1>{props.titulo}</h1>
+        </header>
 
         <Navegacion
           collapsed={collapsed}

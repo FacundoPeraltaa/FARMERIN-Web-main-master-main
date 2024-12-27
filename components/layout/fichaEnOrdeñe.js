@@ -33,7 +33,7 @@ const AnimalesEnOrdeñe = ({ show, setShow }) => {
                 {cantidad === 0 ? (
                     <Alert variant="danger" className="text-uppercase">NO HAY ANIMALES EN ORDEÑE.</Alert>
                 ) : (
-                    <p className="lead">HAY <strong>{cantidad}</strong> ANIMALES EN ORDEÑE.</p>
+                    <p className="lead">HAY <span style={{ fontWeight: 'bold', color: '#000', margin:'4px' }}>{cantidad}</span> ANIMALES EN ORDEÑE.</p>
                 )}
             </Modal.Body>
             <Modal.Footer>

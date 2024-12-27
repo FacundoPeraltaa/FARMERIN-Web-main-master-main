@@ -250,7 +250,7 @@ const AltaMasiva = () => {
     }
     //valida que si los kg de racion sean numericos y mayor a cero
     if (isNaN(a.racion)) {
-      e = "Fila N°: " + a.fila + " / RP: " + a.rp + " - Los Kg. de racion debe ser un valor numérico";
+      e = "Fila N°: " + a.fila + " / RP: " + a.rp + " - Los Kg. de racion debe ser un valor num��rico";
       guardarErrores(errores => [...errores, e]);
       errores = true;
     } else {
@@ -382,6 +382,10 @@ const AltaMasiva = () => {
 
   }
 
+  const clearFile = () => {
+    guardarFile(null);
+  }
+
   return (
 
     <Layout
@@ -394,23 +398,71 @@ const AltaMasiva = () => {
             onSubmit={handleSubmit}
           >
             <Row>
-
               <Col>
-                <Form.File
-                  id="archivoExcel"
-                  onChange={onFileChange}
-                  required
-
-                />
+                <div className="container-AltaMasiva">
+                  <div className="header-AltaMasiva" onClick={() => document.getElementById('file').click()}>
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M7 10V9C7 6.23858 9.23858 4 12 4C14.7614 4 17 6.23858 17 9V10C19.2091 10 21 11.7909 21 14C21 15.4806 20.1956 16.8084 19 17.5M7 10C4.79086 10 3 11.7909 3 14C3 15.4806 3.8044 16.8084 5 17.5M7 10C7.43285 10 7.84965 10.0688 8.24006 10.1959M12 12V21M12 12L15 15M12 12L9 15"
+                        stroke="#000000"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                    <p>Cargar archivo de actualizacion</p>
+                  </div>
+                  <label htmlFor="file" className="footer-AltaMasiva">
+                    <svg
+                      fill="#000000"
+                      viewBox="0 0 32 32"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M15.331 6H8.5v20h15V14.154h-8.169z"></path>
+                      <path d="M18.153 6h-.009v5.342H23.5v-.002z"></path>
+                    </svg>
+                    <p>{file ? file.name : "Ningun archivo seleccionado"}</p>
+                    {file && (
+                      <Button variant="danger" onClick={clearFile} style={{ marginLeft: '10px' }}>
+                        Borrar
+                      </Button>
+                    )}
+                  </label>
+                  <input id="file" type="file" style={{ display: 'none' }} onChange={onFileChange} />
+                </div>
               </Col>
-              <Col>
-                <Button
-                  variant="info"
-                  type="submit"
-                  block
-                >
-                  Cargar Animales
-            </Button>
+            </Row>
+            <Row className="justify-content-center" style={{ marginTop: '20px' }}>
+              <Col xs={12} md={6}>
+                <button className="button-AltaMasiva" type="submit">
+                  <span className="span-AltaMasiva">Cargar Animales</span>
+                  <svg
+                    className="svg-AltaMasiva"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 74 74"
+                    height="34"
+                    width="34"
+                  >
+                    <circle
+                      className="circle-AltaMasiva"
+                      strokeWidth="3"
+                      stroke="white"
+                      r="35.5"
+                      cy="37"
+                      cx="37"
+                    ></circle>
+                    <path
+                      className="path-AltaMasiva"
+                      fill="white"
+                      d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z"
+                    ></path>
+                  </svg>
+                </button>
               </Col>
             </Row>
           </Form>

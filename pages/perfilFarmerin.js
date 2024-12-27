@@ -42,7 +42,7 @@ const UserProfile = () => {
   }
 
   return (
-    <Layout title="Mi Farmerin">
+    <Layout titulo="Mi Farmerin">
       <div className="farmerin-card-container">
         <div className="farmerin-card">
           {usuario ? (

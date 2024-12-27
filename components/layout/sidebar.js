@@ -150,12 +150,7 @@ const Aside = ({ collapsed, toggled, handleToggleSidebar }) => {
                 Ayuda</MenuItem>
             </Link>
           </Menu>
-          <Menu>
-         {/* <Link href="/BotonAgregar">
-              <MenuItem icon={<FaHandsHelping size={15} />}>
-                Agregar Campo</MenuItem>
-            </Link>*/}
-          </Menu>
+         
         </SidebarContent>
         <SidebarFooter style={{ textAlign: 'center' }}>
           <div

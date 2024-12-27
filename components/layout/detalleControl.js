@@ -15,6 +15,7 @@ const DetalleControl = ({ animal, animales, guardarAnimales, racionModificada })
    const [colorCelda, guardarColorCelda] = useState('');
    const target = useRef(null);
    const { firebase, usuario } = useContext(FirebaseContext);
+   const [showAlert, setShowAlert] = useState(false);
 
    useEffect(() => {
       guardarSug(sugerido);
@@ -48,6 +49,8 @@ const DetalleControl = ({ animal, animales, guardarAnimales, racionModificada })
                      racionManual:racionManual
                   }
                   await firebase.db.collection('animal').doc(a.id).update(anim);
+                  setShowAlert(true);
+                  setTimeout(() => setShowAlert(false), 3000);
                   return a;
 
                } catch (error) {
@@ -99,23 +102,13 @@ const DetalleControl = ({ animal, animales, guardarAnimales, racionModificada })
          <td >{diasLact}</td>
          <td >{estrep}</td>
          <td >{diasPre}</td>
-         <td  >{racionModificada}
-            <Overlay target={target.current} show={actu} placement="left">
-               {({ placement, arrowProps, show: _show, popper, ...props }) => (
-                  <div
-                     {...props}
-                     style={{
-                        backgroundColor: 'rgba(30, 144, 255, 0.60)',
-                        padding: '2px 2px',
-                        color: 'white',
-                        borderRadius: 3,
-                        ...props.style,
-                     }}
-                  >
-                     Modific.
-                  </div>
-               )}
-            </Overlay>
+         <td>
+            <div className="d-flex align-items-center">
+               {racionModificada}
+               <div className="alert-container-control">
+                  {showAlert && <Alert variant="success" className="small mb-0">Ración sugerida aplicada</Alert>}
+               </div>
+            </div>
          </td>
          <td >{format(firebase.timeStampToDate(fracion), 'dd/MM/yyyy')}
          </td>

@@ -8,6 +8,7 @@ import StickyTable from "react-sticky-table-thead";
 import differenceInDays from 'date-fns/differenceInDays';
 import { Alert, Table, Modal, Button } from 'react-bootstrap';
 import { FaSort } from 'react-icons/fa';
+import { RiSendPlaneLine } from 'react-icons/ri';
 import { useDispatch } from 'react-redux'; // Import useDispatch
 import { addNotification } from '../redux/notificacionSlice'; 
 // Control
@@ -31,8 +32,10 @@ const Control = () => {
     const [orderDP, guardarOrderDP] = useState('asc');
     const [orderRac, guardarOrderRac] = useState('asc');
     const [showModal, setShowModal] = useState(false);
-    const [modalMessage, setModalMessage] = useState('');
+    const [modalMessages, setModalMessages] = useState([]);
     const [promRacMod, guardarPromRacMod] = useState(0);
+    const [showConfirmModal, setShowConfirmModal] = useState(false);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
 
     const { firebase, tamboSel } = useContext(FirebaseContext);
     const dispatch = useDispatch(); // Ensure dispatch is defined
@@ -63,19 +66,21 @@ const Control = () => {
         try {
             const tamboDoc = await firebase.db.collection('tambo').doc(tamboSel.id).get();
             const porcentaje = tamboDoc.data().porcentaje;
-
-            let mensaje;
+    
+            const mensajes = [];
             if (porcentaje > 0) {
-                mensaje = `AUMENTO DE LA RACION APLICADO.`;
+                mensajes.push("AUMENTO DE LA RACION APLICADO.");
+                mensajes.push("LA RACION SUGERIDA ESTA LIGADA A LOS PARAMETROS POR DEFECTO.");
             } else if (porcentaje < 0) {
-                mensaje = `REDUCCION DE LA RACION APLICADO.`;
+                mensajes.push("REDUCCION DE LA RACION APLICADO.");
+                mensajes.push("LA RACION SUGERIDA ESTA LIGADA A LOS PARAMETROS POR DEFECTO.");
             }
-
-            if (mensaje) {
-                setModalMessage(mensaje);
+    
+            if (mensajes.length > 0) {
+                setModalMessages(mensajes); // Establece las líneas del mensaje
                 dispatch(addNotification({
                     id: Date.now(),
-                    mensaje,
+                    mensaje: mensajes.join(' '), // Concatenar mensajes en una sola línea para notificación
                     fecha: firebase.nowTimeStamp(),
                 }));
                 setShowModal(true);
@@ -84,6 +89,7 @@ const Control = () => {
             console.error("Error fetching porcentaje:", error);
         }
     };
+    
 
     useEffect(() => {
         promedioActual();
@@ -359,6 +365,30 @@ const Control = () => {
         return Math.round(modificoRacion);
     };
 
+    const aplicarRacionSugerida = () => {
+        const animalesActualizados = animales.map(animal => {
+            if (animal.sugerido > 0) {
+                animal.racion = animal.sugerido; // Actualiza la ración
+                animal.fracion = firebase.nowTimeStamp(); // Actualiza la fecha de modificación
+                animal.actu = true; // Marca como actualizado
+                // Aquí puedes agregar la lógica para actualizar en la base de datos
+                firebase.db.collection('animal').doc(animal.id).update({
+                    racion: animal.racion,
+                    fracion: animal.fracion,
+                    actu: animal.actu
+                });
+            }
+            return animal;
+        });
+        guardarAnimales(animalesActualizados); // Actualiza el estado
+        setShowSuccessModal(true);
+    };
+
+    const handleConfirmApply = () => {
+        aplicarRacionSugerida(); // Llama a la función para aplicar la ración
+        setShowConfirmModal(false); // Cierra el modal de confirmación
+    };
+
     return (
 
         <Layout
@@ -366,7 +396,7 @@ const Control = () => {
         >
 
             <Botonera>
-                <h6>Control de alimentación: {animales.length} animales - Promedio actual: {promRacMod} Kgs.- Promedio Sugerido: {promSug} Kgs.- Promedio Dias Lact.: {promLac} Dias.</h6>
+            <h6 style={{ textAlign: 'center', fontSize: 'larger' }}>Control de alimentación: {animales.length} animales - Promedio actual: {promRacMod} Kgs.- Promedio Sugerido: {promSug} Kgs.- Promedio Dias Lact.: {promLac} Dias.</h6>
             </Botonera >
 
             {tamboSel ?
@@ -394,8 +424,12 @@ const Control = () => {
                                         <th onClick={handleClickDP}>Días Preñ. <FaSort size={15} /></th>
                                         <th onClick={handleClickRac}>Ración  <FaSort size={15} /></th>
                                         <th>F.Racion </th>
-                                        <th></th>
-                                        <th>Ración Sugerida</th>
+                                        <th>
+                                            <Button onClick={() => setShowConfirmModal(true)} style={{backgroundColor:"#4cb04f"}}>
+                                                <RiSendPlaneLine />
+                                            </Button>
+                                        </th>
+                                        <th>Raci��n Sugerida</th>
 
                                     </tr>
                                 </thead>
@@ -407,6 +441,7 @@ const Control = () => {
                                             animales={animales}
                                             guardarAnimales={guardarAnimales}
                                             racionModificada={a.racionModificada}
+                                            aplicarRacionSugerida={aplicarRacionSugerida}
                                         />
                                     ))}
                                 </tbody>
@@ -419,19 +454,52 @@ const Control = () => {
             }
 
               {/* Modal for notifications */}
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
+              <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Notificaciones</Modal.Title>
+            <Modal.Title>Notificaciones</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>{modalMessage}</p>
+            <ul>
+                {modalMessages.map((message, index) => (
+                    <li key={index}>{message}</li> // Renderiza cada mensaje en la lista
+                ))}
+            </ul>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
-            Cerrar
-          </Button>
+            <Button variant="secondary" onClick={() => setShowModal(false)}>
+                Cerrar
+            </Button>
         </Modal.Footer>
-            </Modal>
+    </Modal>
+        <Modal show={showConfirmModal} onHide={() => setShowConfirmModal(false)}>
+            <Modal.Header closeButton>
+                <Modal.Title>Confirmar Aplicación</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                ¿Estás seguro de que deseas aplicar la ración sugerida a todos los animales?
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={() => setShowConfirmModal(false)}>
+                    Cancelar
+                </Button>
+                <Button variant="primary" onClick={handleConfirmApply}>
+                    Confirmar
+                </Button>
+            </Modal.Footer>
+        </Modal>
+        <Modal show={showSuccessModal} onHide={() => setShowSuccessModal(false)}>
+            <Modal.Header closeButton>
+                <Modal.Title>Cambio de Ración Sugerido</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                Cambio de ración sugerida exitosa.
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="primary" onClick={() => setShowSuccessModal(false)}>
+                    Cerrar
+                </Button>
+            </Modal.Footer>
+        </Modal>
         </Layout >
 
     )

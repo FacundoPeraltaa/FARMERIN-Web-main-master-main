@@ -105,7 +105,12 @@ export const ObtenerAnimalesPerfilForm = () => {
                             <button className="custom-obtenerAnimales-button" onClick={() => setShowVacasModal(true)}>Ver Lista de Vacas</button>
                             <button className="custom-obtenerAnimales-button" onClick={() => setShowVaquillonasModal(true)}>Ver Lista de Vaquillonas</button>
                             <button className="custom-obtenerAnimales-button" onClick={() => setShowCriasModal(true)}>Ver Lista de Crías</button>
-                            <button className="custom-obtenerAnimales-button" onClick={() => setMostrarLista(false)}>Cerrar</button>
+                            <button className="custom-obtenerAnimales-button" onClick={() => {
+                                setMostrarLista(false);
+                                setShowVacasModal(false);
+                                setShowVaquillonasModal(false);
+                                setShowCriasModal(false);
+                            }}>Cerrar Listas</button>
                         </div>
                         </div>
                         </div>

@@ -861,12 +861,12 @@ contact-section, .social-section {
   text-decoration: underline; /* Subraya al pasar el mouse */
 }
 
-/* Estilos generales para los alertas */
+/* Estilos generales para las alertas */
 .alert {
   margin: 10px 0;
   padding: 15px;
   border-radius: 5px;
-  display: flex;
+  display: grid;
   align-items: center;
   justify-content: space-between;
   font-size: 16px;
@@ -1499,19 +1499,31 @@ button.btn-info:hover {
   color: #eee; // Color del placeholder
 }
 
+/* inicio LOGIN FARMERIN */
 .wrapperLoginFarmerin {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 900px; // Ancho del contenedor
-  height: 75vh; // Altura del contenedor
+  width: 100%; // Ancho del contenedor ajustado a la pantalla
+  height: 100vh; // Altura del contenedor ajustado a la pantalla
   display: grid;
-  grid-template-columns: 1fr 1fr; // Dos columnas
+  grid-template-columns: 1fr; // Una columna para pantallas pequeñas
   border: 3px solid #287fbb; // Borde del contenedor
   box-shadow: 0 0 50px 0 #4cb04e; // Sombra del contenedor
   border-radius: 10px; // Bordes redondeados
   overflow: hidden; // Oculta el desbordamiento
+
+  @media (min-width: 768px) {
+    width: 80%; // Ancho del contenedor ajustado para pantallas medianas
+    height: 80vh; // Altura del contenedor ajustado para pantallas medianas
+    grid-template-columns: 1fr 1fr; // Dos columnas para pantallas medianas
+  }
+
+  @media (min-width: 1024px) {
+    width: 900px; // Ancho del contenedor ajustado para pantallas grandes
+    height: 75vh; // Altura del contenedor ajustado para pantallas grandes
+  }
 }
 
 .formLoginFarmerin {
@@ -2116,7 +2128,7 @@ button.btn-info:hover {
   box-shadow: 4px 4px 15px #3e3e3e;
   font-family: "Segoe UI", Tahoma, sans-serif;
   cursor: default;
-  background-color: #ccc;
+  background-color: #f5f5f5;
 }
 
 .confirmHorarios-div button {
@@ -2465,3 +2477,545 @@ button.btn-info:hover {
   gap: 7px;
   width: 100%;
 }
+/* BOTON APLICAR A TODOS */ 
+.copy-custom {
+  /* button */
+  --button-bg: #353434;
+  --button-hover-bg: #464646;
+  --button-text-color: #CCCCCC;
+  --button-hover-text-color: #8bb9fe;
+  --button-border-radius: 8px; /* Reduce el radio del borde */
+  --button-diameter: 28px; /* Reduce el diámetro del botón */
+  --button-outline-width: 1px;
+  --button-outline-color: rgb(141, 141, 141);
+  /* tooltip */
+  --tooltip-bg: #f4f3f3;
+  --toolptip-border-radius: 4px;
+  --tooltip-font-family: Menlo, Roboto Mono, monospace;
+  --tooltip-font-size: 10px; /* Reduce el tamaño de fuente del tooltip */
+  --tootip-text-color: rgb(50, 50, 50);
+  --tooltip-padding-x: 5px; /* Reduce el padding del tooltip */
+  --tooltip-padding-y: 5px; /* Reduce el padding del tooltip */
+  --tooltip-offset: 6px; /* Ajusta el offset del tooltip */
+}
+
+.copy-custom {
+  box-sizing: border-box;
+  width: var(--button-diameter);
+  height: var(--button-diameter);
+  border-radius: var(--button-border-radius);
+  background-color: var(--button-bg);
+  color: var(--button-text-color);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+}
+
+.tooltip-custom {
+  position: absolute;
+  opacity: 0;
+  visibility: 0;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font: var(--tooltip-font-size) var(--tooltip-font-family);
+  color: var(--tootip-text-color);
+  background: var(--tooltip-bg);
+  padding: var(--tooltip-padding-y) var(--tooltip-padding-x);
+  border-radius: var(--toolptip-border-radius);
+  pointer-events: none;
+  transition: all var(--tooltip-transition-duration) cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 1000; /* Asegúrate de que el tooltip tenga un z-index alto */
+}
+
+.tooltip-custom::before {
+  content: attr(data-text-initial);
+}
+
+.tooltip-custom::after {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--tooltip-padding-y) / 2 * -1);
+  width: var(--tooltip-padding-y);
+  height: var(--tooltip-padding-y);
+  background: inherit;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.copy-custom svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.checkmark-custom {
+  display: none;
+}
+
+/* actions */
+
+.copy-custom:hover .tooltip-custom,
+.copy-custom:focus:not(:focus-visible) .tooltip-custom {
+  opacity: 1;
+  visibility: visible;
+  top: calc((100% + var(--tooltip-offset)) * -1);
+}
+
+.copy-custom:focus:not(:focus-visible) .tooltip-custom::before {
+  content: attr(data-text-end);
+}
+
+.copy-custom:focus:not(:focus-visible) .clipboard-custom {
+  display: none;
+}
+
+.copy-custom:focus:not(:focus-visible) .checkmark-custom {
+  display: block;
+}
+
+.copy-custom:hover,
+.copy-custom:focus {
+  background-color: var(--button-hover-bg);
+}
+
+.copy-custom:active {
+  outline: var(--button-outline-width) solid var(--button-outline-color);
+}
+
+.copy-custom:hover svg {
+  color: var(--button-hover-text-color);
+}
+/// RACION SUGERIDA
+.alert-container-control {
+  top: 60px; /* Adjust based on your header height */
+  width: 100%;
+  z-index: 1000;
+}
+//// MODAL HORARIOS 
+/* From Uiverse.io by SteveBloX */ 
+.lista-horarios-perfil {
+  box-sizing: border-box;
+  width: 280px;
+  height: 350px;
+  background: rgba(217, 217, 217, 0.58);
+  border: 1px solid white;
+  box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(6px);
+  border-radius: 17px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s;
+  display: flex;
+  align-items: center; // Centra verticalmente
+  justify-content: center; // Centra horizontalmente
+  user-select: none;
+  font-weight: bolder;
+  color: black;
+
+  // Nuevos estilos para centrar el contenido
+  flex-direction: column; // Asegura que los elementos se apilen verticalmente
+  padding: 10px; // Espaciado interno para evitar que el contenido toque los bordes
+  margin: auto;
+
+   // Nuevos estilos para el texto
+   font-size: 1.2rem; // Aumenta el tamaño de la fuente
+  
+}
+
+.lista-horarios-perfil:hover {
+  border: 1px solid black;
+  transform: scale(1.05);
+}
+
+.lista-horarios-perfil:active {
+  transform: scale(1.05) rotateZ(1.7deg);
+}
+
+// Estilos para los elementos de texto dentro de .lista-horarios-perfil
+.lista-horarios-perfil p, // Asegúrate de que los párrafos tengan padding
+.lista-horarios-perfil span { // Asegúrate de que los spans tengan padding
+  padding: 15px; // Añade padding a los elementos de texto
+  font-size: 15px; // Asegura que hereden el tamaño de fuente del contenedor
+
+}
+
+.close-button-perfil {
+  position: absolute; /* Posiciona el botón de forma absoluta */
+  top: 10px; /* Ajusta la distancia desde la parte superior */
+  left: 10px; /* Ajusta la distancia desde la izquierda */
+  background-color: red; /* Color de fondo rojo */
+  color: white; /* Color del texto blanco */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  padding: 5px 10px; /* Espaciado interno */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  font-size: 16px; /* Tamaño de fuente */
+}
+
+.close-button-perfil:hover {
+  background-color: darkred; /* Color de fondo más oscuro al pasar el mouse */
+}
+
+/* MODAL DE INFORMACION DE TAMBO */
+.modal-table-container {
+  position: fixed; /* Fija el contenedor en la pantalla */
+  top: 50%; /* Centra verticalmente */
+  left: 50%; /* Centra horizontalmente */
+  transform: translate(-50%, -50%); /* Ajusta el centro */
+  background-color: white; /* Fondo blanco */
+  padding: 20px; /* Espaciado interno */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+  z-index: 1050; /* Asegúrate de que esté por encima de otros elementos */
+  max-width: 90%; /* Ancho máximo */
+  overflow: auto; /* Permite desplazamiento si es necesario */
+}
+
+/* BOTON PARA SELECCIONAR ARCHIVO DE EXEL EN ACTUALIZACION MASIVA */
+.container-ActMasiva {
+  height: 300px;
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 30px rgba(0, 0, 0, .2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin: auto;
+  gap: 5px;
+  background-color: rgba(0, 110, 255, 0.041);
+}
+
+.header-ActMasiva {
+  flex: 1;
+  width: 100%;
+  border: 2px dashed royalblue;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+}
+
+.header-ActMasiva svg {
+  height: 100px;
+}
+
+.header-ActMasiva p {
+  text-align: center;
+  color: black;
+}
+
+.footer-ActMasiva {
+  background-color: rgba(0, 110, 255, 0.075);
+  width: 100%;
+  height: 40px;
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: black;
+  border: none;
+  margin: auto;
+}
+
+.footer-ActMasiva svg {
+  height: 130%;
+  fill: royalblue;
+  background-color: rgba(70, 66, 66, 0.103);
+  border-radius: 50%;
+  padding: 2px;
+  cursor: pointer;
+  box-shadow: 0 2px 30px rgba(0, 0, 0, 0.205);
+}
+
+.footer-ActMasiva p {
+  flex: 1;
+  text-align: center;
+}
+
+#file-ActMasiva {
+  display: none;
+}
+/* Boton de Actualizar Animales */
+.button-ActMasiva {
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.2s;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #297fb8;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  margin: auto;
+  width: 300px;
+}
+
+.span-ActMasiva {
+  margin: auto;
+  color: #e0e0e0;
+}
+
+.button-ActMasiva:hover {
+  background: #4db04e;
+}
+
+.button-ActMasiva > svg-ActMasiva {
+  width: 34px;
+  margin-left: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.button-ActMasiva:hover svg-ActMasiva {
+  transform: translateX(5px);
+}
+
+.button-ActMasiva:active {
+  transform: scale(0.95);
+}
+
+/* BOTON PARA SELECCIONAR ARCHIVO DE EXEL EN ALTA MASIVA */
+.container-AltaMasiva {
+  height: 300px;
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 30px rgba(0, 0, 0, .2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin: auto;
+  gap: 5px;
+  background-color: rgba(0, 110, 255, 0.041);
+}
+
+.header-AltaMasiva {
+  flex: 1;
+  width: 100%;
+  border: 2px dashed royalblue;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+}
+
+.header-AltaMasiva svg {
+  height: 100px;
+}
+
+.header-AltaMasiva p {
+  text-align: center;
+  color: black;
+}
+
+.footer-AltaMasiva {
+  background-color: rgba(0, 110, 255, 0.075);
+  width: 100%;
+  height: 40px;
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: black;
+  border: none;
+  margin: auto;
+}
+
+.footer-AltaMasiva svg {
+  height: 130%;
+  fill: royalblue;
+  background-color: rgba(70, 66, 66, 0.103);
+  border-radius: 50%;
+  padding: 2px;
+  cursor: pointer;
+  box-shadow: 0 2px 30px rgba(0, 0, 0, 0.205);
+}
+
+.footer-AltaMasiva p {
+  flex: 1;
+  text-align: center;
+}
+
+#file-AltaMasiva {
+  display: none;
+}
+/* Boton de Alta Animales */
+.button-AltaMasiva {
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.2s;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #297fb8;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  margin: auto;
+  width: 300px;
+}
+
+.span-AltaMasiva {
+  margin: auto;
+  color: #e0e0e0;
+}
+
+.button-AltaMasiva:hover {
+  background: #4db04e;
+}
+
+.button-AltaMasiva > svg-AltaMasiva {
+  width: 34px;
+  margin-left: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.button-AltaMasiva:hover svg-AltaMasiva {
+  transform: translateX(5px);
+}
+
+.button-AltaMasiva:active {
+  transform: scale(0.95);
+}
+
+/* BOTON PARA SELECCIONAR ARCHIVO DE EXEL EN CONTROL LECHERO */
+.container-ControlLechero {
+  height: 300px;
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 30px rgba(0, 0, 0, .2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin: auto;
+  gap: 5px;
+  background-color: rgba(0, 110, 255, 0.041);
+}
+
+.header-ControlLechero {
+  flex: 1;
+  width: 100%;
+  border: 2px dashed royalblue;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+}
+
+.header-ControlLechero svg {
+  height: 100px;
+}
+
+.header-ControlLechero p {
+  text-align: center;
+  color: black;
+}
+
+.footer-ControlLechero {
+  background-color: rgba(0, 110, 255, 0.075);
+  width: 100%;
+  height: 40px;
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: black;
+  border: none;
+  margin: auto;
+}
+
+.footer-ControlLechero svg {
+  height: 130%;
+  fill: royalblue;
+  background-color: rgba(70, 66, 66, 0.103);
+  border-radius: 50%;
+  padding: 2px;
+  cursor: pointer;
+  box-shadow: 0 2px 30px rgba(0, 0, 0, 0.205);
+}
+
+.footer-ControlLechero p {
+  flex: 1;
+  text-align: center;
+}
+
+#file-ControlLechero {
+  display: none;
+}
+/* Boton de Control Lechero */
+
+.button-ControlLechero {
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.2s;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #297fb8;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  margin: auto;
+  width: 300px;
+}
+
+.span-ControlLechero {
+  margin: auto;
+  color: #e0e0e0;
+}
+
+.button-ControlLechero:hover {
+  background: #4db04e;
+}
+
+.button-ControlLechero > svg-ControlLechero {
+  width: 34px;
+  margin-left: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.button-ControlLechero:hover svg-AltaMControlLecheroasiva {
+  transform: translateX(5px);
+}
+
+.button-ControlLechero:active {
+  transform: scale(0.95);
+}
+
+.calendario-ControlLechero{
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.2s;
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  margin: auto;
+  width: 318px;
+}
+
+
